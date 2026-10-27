@@ -589,7 +589,6 @@ export async function createStage(canvas, { reducedMotion = false } = {}) {
       { x: 0.42, y: -0.04, s: 0.62, gz: 0, gs: 0.5, gry: 0 }, // connected memory
       { x: 0.0, y: -0.62, s: 1.15, gz: -3, gs: 0.5, gry: 0 }, // screens
       { x: -0.8, y: 0.34, s: 0.48, gz: -1, gs: 0.85, gry: 0 }, // numbers
-      { x: 0.45, y: 0.0, s: 0.8, gz: -1, gs: 0.8, gry: 0 }, // privacy
       { x: 0.0, y: -0.66, s: 1.2, gz: -3, gs: 0.5, gry: 0 }, // compare
       { x: 0.0, y: 0.5, s: 0.5, gz: 0, gs: 1.3, gry: 0 }, // finale: follows .finale-orb, see anchorFinale
     ],
@@ -602,7 +601,6 @@ export async function createStage(canvas, { reducedMotion = false } = {}) {
       { x: 0, y: 0.6, s: 0.42, gz: 0, gs: 0.45, gry: 0 },
       { x: 0, y: -0.7, s: 1.0, gz: -3, gs: 0.5, gry: 0 },
       { x: 0, y: 0.62, s: 0.4, gz: -1, gs: 0.85, gry: 0 },
-      { x: 0, y: 0.62, s: 0.45, gz: -1, gs: 0.8, gry: 0 },
       { x: 0, y: -0.7, s: 1.0, gz: -3, gs: 0.5, gry: 0 },
       { x: 0, y: 0.55, s: 0.5, gz: 0, gs: 1.3, gry: 0 },
     ],

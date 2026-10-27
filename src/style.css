@@ -409,6 +409,15 @@ main,
   box-decoration-break: clone;
 }
 
+/* The second line of a headline wraps on its own, so it splits evenly instead of leaving one word behind. */
+.headline .grad,
+.finale-title .grad {
+  display: inline-block;
+  /* Room for accents and descenders, which the gradient only paints inside the box. */
+  padding: 0.1em 0 0.16em;
+  margin: -0.1em 0 -0.16em;
+}
+
 .lede {
   margin: 26px 0 0;
   max-width: 34em;
@@ -918,19 +927,14 @@ b.others,
   }
 }
 
-/* The same soft shade as the hero, behind centred headlines and the privacy copy. */
-.section-head::before,
-.privacy-copy::before {
+/* The same soft shade as the hero, behind centred headlines. */
+.section-head::before {
   content: "";
   position: absolute;
   z-index: -1;
   inset: -18% -12%;
   background: radial-gradient(closest-side, rgba(4, 5, 11, 0.72), rgba(4, 5, 11, 0.35) 60%, transparent);
   pointer-events: none;
-}
-
-.privacy-copy {
-  position: relative;
 }
 
 /* Bento */
@@ -1722,62 +1726,6 @@ html[lang="es"] .stat-value .pct::before {
   }
 }
 
-/* Privacy */
-
-.privacy-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr);
-  gap: clamp(40px, 6vw, 90px);
-  align-items: center;
-}
-
-.privacy-copy .sub {
-  margin-left: 0;
-}
-
-.guards {
-  display: grid;
-  gap: 14px;
-  margin: 28px 0 0;
-  padding: 0;
-  list-style: none;
-}
-
-.guards li {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  color: var(--ink-2);
-  font-size: 15.5px;
-  line-height: 1.45;
-}
-
-.guards svg {
-  flex: none;
-  margin-top: 1px;
-  color: var(--teal);
-}
-
-.netlog {
-  margin: 0;
-  border-radius: 20px;
-  background: rgba(16, 17, 30, 0.95);
-  border: 1px solid var(--line-2);
-  box-shadow: 0 50px 120px -30px rgba(0, 0, 0, 0.9), 0 0 100px -30px rgba(46, 230, 207, 0.35);
-  overflow: hidden;
-  font-size: 13.5px;
-}
-
-.netlog-bar {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 14px 16px;
-  border-bottom: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.03);
-}
-
-.netlog-bar i,
 .terminal-bar i {
   width: 12px;
   height: 12px;
@@ -1785,116 +1733,15 @@ html[lang="es"] .stat-value .pct::before {
   background: #ff5f57;
 }
 
-.netlog-bar i:nth-child(2),
 .terminal-bar i:nth-child(2) { background: #febc2e; }
 
-.netlog-bar i:nth-child(3),
 .terminal-bar i:nth-child(3) { background: #28c840; }
 
-.netlog-bar span,
 .terminal-bar span {
   margin-left: 10px;
   font-weight: 650;
   color: var(--ink-2);
   font-size: 13px;
-}
-
-.netlog-summary {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin: 16px;
-  padding: 12px 14px;
-  border-radius: 12px;
-  background: rgba(46, 230, 207, 0.08);
-  border: 1px solid rgba(46, 230, 207, 0.25);
-  color: #c9fff6;
-  font-weight: 600;
-}
-
-.netlog-summary svg {
-  flex: none;
-  color: var(--teal);
-}
-
-.netlog-rows {
-  margin: 0;
-  padding: 0 8px 8px;
-  list-style: none;
-}
-
-.netlog-rows li {
-  display: grid;
-  grid-template-columns: 58px minmax(0, 1.15fr) minmax(0, 1.35fr) minmax(0, 1.5fr) 82px;
-  column-gap: 12px;
-  gap: 10px;
-  align-items: center;
-  padding: 11px 10px;
-  border-top: 1px solid var(--line);
-  color: var(--ink-2);
-  white-space: nowrap;
-}
-
-.netlog-rows time,
-.netlog-rows code,
-.netlog-rows .size {
-  font-family: var(--mono);
-  font-size: 12px;
-}
-
-.netlog-rows time {
-  color: var(--ink-3);
-}
-
-.netlog-rows .purpose {
-  color: var(--ink);
-  font-weight: 600;
-  white-space: normal;
-  line-height: 1.3;
-}
-
-.netlog-rows code {
-  color: var(--lavender);
-}
-
-.netlog-rows .ok {
-  justify-self: end;
-  padding: 2px 6px;
-  border-radius: 6px;
-  font: 600 11.5px/1.4 var(--mono);
-  color: #7dffa8;
-  background: rgba(40, 200, 64, 0.12);
-}
-
-.netlog-rows .muted {
-  justify-self: end;
-  font-size: 12px;
-  color: var(--ink-3);
-}
-
-@media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
-  .netlog-rows li {
-    opacity: 0;
-    transform: translateY(10px);
-    transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
-  }
-
-  .netlog.in .netlog-rows li {
-    opacity: 1;
-    transform: none;
-  }
-
-  .netlog.in .netlog-rows li:nth-child(1) { transition-delay: 0.35s; }
-  .netlog.in .netlog-rows li:nth-child(2) { transition-delay: 0.6s; }
-  .netlog.in .netlog-rows li:nth-child(3) { transition-delay: 0.85s; }
-  .netlog.in .netlog-rows li:nth-child(4) { transition-delay: 1.1s; }
-}
-
-.netlog-foot {
-  padding: 12px 18px 16px;
-  border-top: 1px solid var(--line);
-  color: var(--ink-3);
-  font-size: 12.5px;
 }
 
 /* Compare: Vauta against one rival at a time. */
@@ -2658,10 +2505,6 @@ html[lang="es"] .stat-value .pct::before {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .privacy-grid {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
   .mem-row {
     grid-template-columns: minmax(0, 1fr);
   }
@@ -2855,28 +2698,6 @@ html[lang="es"] .stat-value .pct::before {
     border-radius: 10px;
   }
 
-  .netlog {
-    font-size: 13px;
-  }
-
-  .netlog-rows li {
-    grid-template-columns: 1fr auto;
-    grid-template-areas:
-      "purpose ok"
-      "host size";
-    gap: 4px 10px;
-  }
-
-  .netlog-rows time {
-    display: none;
-  }
-
-  .netlog-rows .purpose { grid-area: purpose; }
-  .netlog-rows code { grid-area: host; }
-  .netlog-rows .size { grid-area: size; justify-self: end; color: var(--ink-3); }
-  .netlog-rows .ok,
-  .netlog-rows .muted { grid-area: ok; }
-
   .terminal pre {
     padding: 16px 14px;
     font-size: 12px;
@@ -2980,10 +2801,6 @@ html[lang="es"] .stat-value .pct::before {
   .chips li {
     font-size: 12.5px;
     color: var(--ink-2);
-  }
-
-  .netlog-rows .ok {
-    font-size: 12px;
   }
 
   /* Comfortable tap targets. */
@@ -3225,8 +3042,7 @@ html[lang="es"] .stat-value .pct::before {
 
 @media print {
   .reveal,
-  .step-card,
-  .netlog {
+  .step-card {
     opacity: 1 !important;
     transform: none !important;
     filter: none !important;

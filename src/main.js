@@ -6,10 +6,16 @@ import { renderBoard } from './compare.js';
 
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const root = document.documentElement;
+// The images, from the English page or from the Spanish one (es/): both load this script from assets/.
+const scriptUrl = import.meta.url;
+const img = new URL('../img/', scriptUrl).href;
 
 // ---------------------------------------------------------------------------------------------------------------
 // Language
+// The page in index.html is English and switches in place; es/ is the same page written in Spanish at build time,
+// so search engines find it, and its English button goes back to the English page.
 
+const builtIn = root.lang;
 const english = new Map();
 document.querySelectorAll('[data-i18n]').forEach((el) => english.set(el, el.innerHTML));
 const englishAria = new Map();
@@ -25,6 +31,7 @@ function storedLanguage() {
 }
 
 function preferredLanguage() {
+  if (builtIn === 'es') return 'es';
   const stored = storedLanguage();
   if (stored === 'en' || stored === 'es') return stored;
   return (navigator.languages || [navigator.language || 'en']).some((l) => l.toLowerCase().startsWith('es')) ? 'es' : 'en';
@@ -56,7 +63,7 @@ function setLanguage(next, remember = false) {
   formatCounts(true);
   resetCopy();
   board.style.minHeight = '';
-  board.innerHTML = renderBoard(currentRival, next);
+  board.innerHTML = renderBoard(currentRival, next, img);
   // The other language wraps differently: everything the stage follows moves.
   if (stage) requestAnimationFrame(relayout);
   if (remember) {
@@ -64,7 +71,14 @@ function setLanguage(next, remember = false) {
   }
 }
 
-document.querySelectorAll('.lang button').forEach((b) => b.addEventListener('click', () => setLanguage(b.dataset.lang, true)));
+document.querySelectorAll('.lang button').forEach((b) => b.addEventListener('click', () => {
+  if (builtIn === 'es' && b.dataset.lang === 'en') {
+    try { localStorage.setItem('vauta-lang', 'en'); } catch { /* private mode */ }
+    location.href = `../${location.hash}`;
+    return;
+  }
+  setLanguage(b.dataset.lang, true);
+}));
 
 // ---------------------------------------------------------------------------------------------------------------
 // Screenshots
@@ -75,13 +89,13 @@ const panel = document.getElementById('panel');
 let currentShot = 'meetings-minutes';
 
 function updateShots() {
-  const base = `img/${currentShot}-${lang}`;
+  const base = `${img}${currentShot}-${lang}`;
   shot.srcset = `${base}-880.webp 880w, ${base}-1600.webp 1600w`;
   shot.src = `${base}-1600.webp`;
   shotCrop.srcset = `${base}-crop-900.webp`;
   shot.alt = t(`alt.${currentShot}`);
-  panel.srcset = `img/panel-${lang}-400.webp 400w, img/panel-${lang}-720.webp 720w`;
-  panel.src = `img/panel-${lang}-720.webp`;
+  panel.srcset = `${img}panel-${lang}-400.webp 400w, ${img}panel-${lang}-720.webp 720w`;
+  panel.src = `${img}panel-${lang}-720.webp`;
   panel.alt = t('alt.panel');
 }
 
@@ -132,7 +146,7 @@ function selectRival(tab) {
   currentRival = tab.dataset.rival;
   // Never shorter than the tallest board seen at this width, so the page below does not jump between rivals.
   board.style.minHeight = `${board.offsetHeight}px`;
-  board.innerHTML = renderBoard(currentRival, lang);
+  board.innerHTML = renderBoard(currentRival, lang, img);
   if (reducedMotion) return;
   board.classList.remove('swap');
   void board.offsetWidth;
@@ -230,7 +244,7 @@ if (reducedMotion) {
   document.querySelectorAll('.reveal').forEach((el) => el.classList.add('in'));
   counts.forEach((el) => { el.dataset.done = '1'; });
 } else {
-  document.querySelectorAll('.reveal, .step-card, .netlog').forEach((el) => {
+  document.querySelectorAll('.reveal, .step-card').forEach((el) => {
     // The hero is on screen from the start: reveal it as the page opens instead of waiting for a scroll.
     if (el.closest('.hero')) requestAnimationFrame(() => requestAnimationFrame(() => el.classList.add('in')));
     else revealer.observe(el);

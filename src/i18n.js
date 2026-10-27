@@ -6,8 +6,9 @@
 
 export const meta = {
   es: {
-    title: 'Vauta — Actas de reuniones redactadas en tu Mac',
-    description: 'Vauta transcribe cualquier llamada en tu Mac y la convierte en actas, decisiones y tareas que puedes buscar y consultar. Sin bots, sin nube, sin cuenta. El audio nunca se guarda. Libre y de código abierto.',
+    title: 'Vauta — Transcripción de reuniones y actas en tu Mac',
+    description: 'App gratuita y de código abierto para Mac: transcribe cualquier llamada (Zoom, Teams, Meet, Slack) en tu Mac y redacta el acta con decisiones, tareas y preguntas abiertas. Sin bots, sin nube, sin cuenta.',
+    share: 'Actas, decisiones y tareas de cualquier llamada, redactadas en tu Mac. Sin bots, sin nube, sin cuenta. Gratis y de código abierto.',
   },
 };
 
@@ -18,11 +19,10 @@ export const strings = {
     'nav.features': 'Funciones',
     'nav.memory': 'Memoria',
     'nav.numbers': 'Cifras',
-    'nav.privacy': 'Privacidad',
     'nav.compare': 'Comparativa',
 
     'hero.eyebrow': 'Gratis y de código abierto · para Mac',
-    'hero.title': 'Actas de reuniones,<br><span class="grad">redactadas<br>en tu Mac.</span>',
+    'hero.title': 'Actas de reuniones,<br><span class="grad">redactadas<br>en tu Mac</span>',
     'hero.lede': 'Capta cualquier llamada, la transcribe en tu Mac y redacta el acta: decisiones, tareas y preguntas abiertas. Sin bot, sin nube, sin cuenta.',
     'hero.cta': 'Consigue Vauta gratis',
     'hero.cta2': 'Cómo funciona',
@@ -31,11 +31,11 @@ export const strings = {
 
     'meter.me': 'Yo',
     'meter.others': 'Otros',
-    's1.title': 'Capta los dos<br>lados de la llamada.',
+    's1.title': 'Capta los dos<br>lados de la llamada',
     's1.body': 'Tu micrófono se capta como <b class="me">Yo</b> y el audio de la llamada como <b class="others">Otros</b>. Funciona con cualquier app y no entra ningún bot.',
     's1.notice': 'Ofrece un aviso para pegar en el chat e informar a los participantes.',
     's1.fine': 'Captura todo el audio del sistema; probado en llamadas reales en Safari por ahora.',
-    's2.title': 'Transcribe y<br>redacta el acta.',
+    's2.title': 'Transcribe y<br>redacta el acta',
     's2.body': 'Transcripción en tu Mac, hablante por hablante. El acta recoge decisiones, tareas con responsable y fecha, y preguntas abiertas.',
     's2.dec': 'Decisión',
     's2.dec.t': 'La beta sale el jueves',
@@ -44,7 +44,7 @@ export const strings = {
     's2.open': 'Abierta',
     's2.open.t': '¿Página de precios?',
     's2.proof': '<b>Cada punto tiene su fuente.</b> Cada decisión y tarea cita la transcripción; lo que no puede respaldar se marca como no confirmado.',
-    's3.title': 'Lo guarda todo<br>cifrado.',
+    's3.title': 'Lo guarda todo<br>cifrado',
     's3.body': 'El audio nunca se guarda. Transcripciones y actas van cifradas, con la clave en tu Llavero.',
     's3.f1': 'de audio en disco',
     's3.f2': 'almacén cifrado',
@@ -55,7 +55,7 @@ export const strings = {
     's3.f5': 'después se borran las transcripciones; tú decides cuánto guardar las actas',
 
     'f.kicker': 'Funciones',
-    'f.title': 'De la llamada al acta.<br><span class="grad">Todo en tu Mac.</span>',
+    'f.title': 'De la llamada al acta<br><span class="grad">Todo en tu Mac</span>',
     'f.translate.t': 'Traducción en tiempo real',
     'f.translate.b': 'Subtítulos de lo que dicen los demás participantes, traducidos a tu idioma mientras hablan.',
     'f.translate.live': 'Subtítulos en directo',
@@ -85,7 +85,7 @@ export const strings = {
     'f.models.no': 'Servidores de modelos en internet: rechazados',
 
     'm.kicker': 'Memoria conectada',
-    'm.title': 'Cada reunión y cada documento, conectados.<br><span class="grad">Pregunta una vez. Vauta busca en todos.</span>',
+    'm.title': 'Cada reunión y cada documento, conectados<br><span class="grad">Pregunta una vez y Vauta busca en todos</span>',
     'm.ask': 'Preguntar',
     'm.scope': 'Todas las reuniones y documentos',
     'm.q': '¿Qué acordamos con Acme sobre el precio?',
@@ -111,7 +111,7 @@ export const strings = {
     'm.fine': 'El modelo de búsqueda es opcional: 574 MB, solo se descarga si tú lo eliges. Sin él, Preguntar busca por palabras clave.',
 
     'sc.kicker': 'La app',
-    'sc.title': 'Una app nativa de barra de menús.<br><span class="grad">Empieza y para desde la barra de menús.</span>',
+    'sc.title': 'Una app nativa de barra de menús<br><span class="grad">Empieza y para desde la barra de menús</span>',
     'sc.beta': '<b>Beta 0.9</b> La interfaz de esta primera versión es provisional. Ya se está trabajando en una mejorada.',
     'sc.tab.minutes': 'Actas',
     'sc.tab.ask': 'Preguntar',
@@ -120,7 +120,7 @@ export const strings = {
     'sc.fine': 'Capturas reales con reuniones de ejemplo inventadas. Swift y SwiftUI nativos.',
 
     'n.kicker': 'Rendimiento',
-    'n.title': 'Medido en un Apple M2.<br><span class="grad">Método y límites publicados.</span>',
+    'n.title': 'Medido en un Apple M2<br><span class="grad">Método y límites publicados</span>',
     'n.diaSpeed': 'más rápida que el tiempo real distinguiendo hablantes',
     'n.ratio.audio': '7 h de audio',
     'n.ratio.vauta': '&lt; 3 min',
@@ -137,28 +137,12 @@ export const strings = {
     'n.how': 'Apple M2 · corpus públicos, no llamadas reales · Cómo lo medimos',
     'n.fine': 'Apple M2 con 24 GB, macOS 27, compilación release. Corpus públicos (reuniones de AMI, VoxConverse, discursos del Parlamento y audiolibros en español) preparados para parecerse a un lado de una llamada, no llamadas reales. Las cifras de hablantes puntúan la voz de los participantes remotos con un margen de 0,25 s; los ajustes se eligieron con otras 18 grabaciones (9,4 % en ellas). <a href="https://github.com/MaquinaTech/Vauta/blob/main/docs/BENCHMARKS.md">Método y límites →</a>',
 
-    'p.kicker': 'Privacidad',
-    'p.title': 'Cada conexión queda registrada.<br><span class="grad">Puedes comprobarlo en la app.</span>',
-    'p.sub': 'Actividad de red muestra adónde se conecta Vauta, cuándo y cuántos datos; nunca el contenido.',
-    'p.g1': 'El texto de las reuniones solo va al servidor de modelos que elijas, o a ninguna parte',
-    'p.g2': 'Internet solo se usa para descargar un modelo, cuando tú lo inicias',
-    'p.g3': 'Nunca acepta conexiones entrantes',
-    'p.g4': 'Código abierto: puedes leer y compilar el código',
-    'p.window': 'Actividad de red',
-    'p.summary': 'Solo 2 destinos, todos en tu Mac o en tu red local.',
-    'p.r1': 'Actas',
-    'p.r2': 'Traducción',
-    'p.r3': 'Notas en directo',
-    'p.r4': 'Búsqueda de servidores',
-    'p.ok': 'Correcto (200)',
-    'p.nothing': 'Nada en ejecución',
-    'p.foot': 'Ilustración. En la app: Ajustes → Privacidad y seguridad → Abrir actividad de red.',
 
     'c.kicker': 'Comparativa',
-    'c.title': 'Vauta frente a la competencia.<br><span class="grad">Ellas transcriben en la nube. Vauta, en tu Mac.</span>',
+    'c.title': 'Vauta frente a la competencia<br><span class="grad">Ellas transcriben en la nube, Vauta en tu Mac</span>',
     'c.fine': 'Documentación pública de cada empresa a 27 de octubre de 2026, para la función indicada y su configuración por defecto. Los planes cambian: consulta sus webs. Los nombres son marcas de sus propietarios; Vauta no está afiliada. <a href="https://github.com/MaquinaTech/Vauta-landing/issues">¿Ves un error?</a>',
 
-    'i.title': 'Consigue Vauta.<br><span class="grad">Gratis y de código abierto.</span>',
+    'i.title': 'Consigue Vauta<br><span class="grad">Gratis y de código abierto</span>',
     'i.lede': 'Compílala en tu Mac con estos comandos. Todo el código que ejecuta es público.',
     'i.copy': 'Copiar',
     'i.c1': '# una vez, recomendado (pide contraseñas)',
@@ -175,7 +159,6 @@ export const strings = {
     'foot.releases': 'Versiones',
     'foot.legal': 'Creada por Nicolás López de Lerma López · Licencia Apache 2.0. Apple, macOS, Safari, FaceTime, Touch ID, Swift, SwiftUI y Apple Intelligence son marcas de Apple Inc. Los demás nombres de productos son marcas de sus propietarios; Vauta no está afiliada a ninguno de ellos.',
     'aria.project': 'Proyecto',
-    'aria.netlog': 'Ilustración de la ventana Actividad de red de Vauta',
     'aria.screens': 'Capturas',
     'aria.apps': 'Funciona con',
     'aria.compare': 'Comparar Vauta con',

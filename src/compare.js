@@ -225,7 +225,7 @@ const rank = { ahead: 0, level: 1, behind: 2 };
 const ahead = (r) => rivals.filter((v) => v.cells[r.id][0] === 'ahead').length;
 const sorted = rows.slice().sort((a, b) => ahead(b) - ahead(a));
 
-export function renderBoard(id, lang) {
+export function renderBoard(id, lang, img = 'img/') {
   const rival = rivals.find((r) => r.id === id) || rivals[0];
   const w = words[lang] || words.en;
   const name = rival.name[lang];
@@ -238,7 +238,7 @@ export function renderBoard(id, lang) {
     <p class="vs-why">${rival.why[lang]}</p>
     <div class="vs-score"><span class="vs-meter" aria-hidden="true">${meter}</span><p><b>${w.ahead(count('ahead'), rows.length)}</b> · ${score}</p></div>
     <div class="vs-grid">
-      <div class="vs-head" aria-hidden="true"><span></span><span class="vs-col-vauta"><img src="img/icon-256.webp" width="22" height="22" alt="">Vauta</span><span class="vs-col-rival">${name}</span></div>
+      <div class="vs-head" aria-hidden="true"><span></span><span class="vs-col-vauta"><img src="${img}icon-256.webp" width="22" height="22" alt="">Vauta</span><span class="vs-col-rival">${name}</span></div>
       ${order.map((r) => {
         const [mark, text] = rival.cells[r.id];
         return `<div class="vs-row ${mark}">
