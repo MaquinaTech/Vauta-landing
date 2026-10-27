@@ -2,6 +2,7 @@
 // SPDX-FileCopyrightText: 2026 Nicolás López de Lerma López
 
 import { strings, meta, extra } from './i18n.js';
+import { renderBoard } from './compare.js';
 
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const root = document.documentElement;
@@ -54,6 +55,8 @@ function setLanguage(next, remember = false) {
   updateShots();
   formatCounts(true);
   resetCopy();
+  board.style.minHeight = '';
+  board.innerHTML = renderBoard(currentRival, next);
   // The other language wraps differently: everything the stage follows moves.
   if (stage) requestAnimationFrame(relayout);
   if (remember) {
@@ -111,6 +114,49 @@ tabs.forEach((tab, i) => {
     selectTab(next);
   });
 });
+
+// ---------------------------------------------------------------------------------------------------------------
+// Comparison
+
+const board = document.getElementById('vs-board');
+const rivalTabs = [...document.querySelectorAll('.vs-picker [role="tab"]')];
+let currentRival = rivalTabs[0].dataset.rival;
+
+function selectRival(tab) {
+  if (tab.dataset.rival === currentRival) return;
+  rivalTabs.forEach((x) => {
+    x.setAttribute('aria-selected', String(x === tab));
+    x.tabIndex = x === tab ? 0 : -1;
+  });
+  board.setAttribute('aria-labelledby', tab.id);
+  currentRival = tab.dataset.rival;
+  // Never shorter than the tallest board seen at this width, so the page below does not jump between rivals.
+  board.style.minHeight = `${board.offsetHeight}px`;
+  board.innerHTML = renderBoard(currentRival, lang);
+  if (reducedMotion) return;
+  board.classList.remove('swap');
+  void board.offsetWidth;
+  board.classList.add('swap');
+}
+rivalTabs.forEach((tab, i) => {
+  tab.tabIndex = i === 0 ? 0 : -1;
+  tab.addEventListener('click', () => selectRival(tab));
+  tab.addEventListener('keydown', (e) => {
+    const moves = { ArrowRight: i + 1, ArrowLeft: i - 1, Home: 0, End: rivalTabs.length - 1 };
+    if (!(e.key in moves)) return;
+    e.preventDefault();
+    const next = rivalTabs[(moves[e.key] + rivalTabs.length) % rivalTabs.length];
+    next.focus();
+    selectRival(next);
+  });
+});
+board.setAttribute('aria-labelledby', rivalTabs[0].id);
+let boardWidth = board.offsetWidth;
+new ResizeObserver(() => {
+  if (board.offsetWidth === boardWidth) return;
+  boardWidth = board.offsetWidth;
+  board.style.minHeight = '';
+}).observe(board);
 
 // ---------------------------------------------------------------------------------------------------------------
 // Counters
@@ -171,6 +217,14 @@ const revealer = new IntersectionObserver((entries) => {
     revealer.unobserve(entry.target);
   });
 }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
+
+// The small illustrations in the cards only move while they are on screen.
+if (!reducedMotion) {
+  const player = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => entry.target.classList.toggle('live', entry.isIntersecting));
+  }, { rootMargin: '-10% 0px' });
+  document.querySelectorAll('.live-viz').forEach((el) => player.observe(el));
+}
 
 if (reducedMotion) {
   document.querySelectorAll('.reveal').forEach((el) => el.classList.add('in'));

@@ -210,6 +210,8 @@ const backgroundFragment = /* glsl */ `
     col += vec3(0.12, 0.0, 0.1) * glow(p, vec2(0.75 * a.x, 0.95), 0.5) * 0.18;
     float v = smoothstep(1.25, 0.25, length((uv - 0.5) * vec2(a.x * 0.8, 1.0)));
     col *= mix(0.55, 1.0, v);
+    // A touch of noise, so the dark gradient never shows bands.
+    col += (fract(sin(dot(gl_FragCoord.xy, vec2(12.9898, 78.233))) * 43758.5453) - 0.5) * 0.012;
     gl_FragColor = vec4(col, 1.0);
   }
 `;
@@ -353,7 +355,6 @@ function buildCore() {
       transmission: 1,
       thickness: 1.1,
       ior: 1.48,
-      dispersion: 0.25,
       iridescence: 0.75,
       iridescenceIOR: 1.32,
       iridescenceThicknessRange: [180, 620],
@@ -422,9 +423,11 @@ export async function createStage(canvas, { reducedMotion = false } = {}) {
   renderer.setClearColor(0x04050b, 1);
 
   // Budget device pixels rather than cap the pixel ratio, so a large Retina window costs no more than a laptop.
-  const budget = mobile ? 1.1e6 : 2.4e6;
+  // The scene is soft light and particles: below one device pixel per CSS pixel on very large screens still looks
+  // the same.
+  const budget = mobile ? 0.85e6 : 1.8e6;
   let dprCap = mobile ? 1.75 : 2;
-  const pickDpr = (w, h) => Math.max(1, Math.min(window.devicePixelRatio || 1, dprCap, Math.sqrt(budget / (w * h))));
+  const pickDpr = (w, h) => Math.max(0.75, Math.min(window.devicePixelRatio || 1, dprCap, Math.sqrt(budget / (w * h))));
   let dpr = pickDpr(canvas.clientWidth || window.innerWidth, canvas.clientHeight || window.innerHeight);
   renderer.setPixelRatio(dpr);
 
@@ -455,12 +458,10 @@ export async function createStage(canvas, { reducedMotion = false } = {}) {
 
   const { core, glass, bars } = buildCore();
   rig.add(core);
-  // The glass's refraction pass is the costliest part of the frame: draw it at half resolution, and without
-  // dispersion on phones.
+  // The glass's refraction pass is the costliest part of the frame: draw it at half resolution.
   renderer.transmissionResolutionScale = 0.5;
-  if (mobile) glass.material.dispersion = 0;
 
-  const count = mobile ? 26000 : 70000;
+  const count = mobile ? 22000 : 50000;
   const uniforms = {
     uTime: { value: 0 },
     uState: { value: 0 },
@@ -489,7 +490,9 @@ export async function createStage(canvas, { reducedMotion = false } = {}) {
   points.frustumCulled = false;
   rig.add(points);
 
-  const target = new THREE.WebGLRenderTarget(1, 1, { type: THREE.HalfFloatType, samples: !mobile && dpr < 1.5 ? 4 : 0 });
+  // No multisampling: the composer would multisample every pass, which doubled the frame's GPU time for edges that
+  // the bloom softens anyway.
+  const target = new THREE.WebGLRenderTarget(1, 1, { type: THREE.HalfFloatType });
   const composer = new EffectComposer(renderer, target);
   composer.addPass(new RenderPass(scene, camera));
   const bloom = new UnrealBloomPass(new THREE.Vector2(1, 1), mobile ? 0.75 : 0.9, 0.6, 0.62);
@@ -508,9 +511,9 @@ export async function createStage(canvas, { reducedMotion = false } = {}) {
       { x: 0.36, y: 0.0, s: 1.0, gz: 0, gs: 0.86, gry: 0.3 }, // 01 waves
       { x: 0.44, y: 0.0, s: 0.86, gz: -5, gs: 0.25, gry: -0.35 }, // 02 page
       { x: 0.44, y: 0.0, s: 0.82, gz: 0, gs: 0.95, gry: 0 }, // 03 vault
-      { x: 0.74, y: 0.1, s: 0.55, gz: -1, gs: 0.9, gry: 0 }, // features
+      { x: 0.86, y: 0.42, s: 0.4, gz: -1, gs: 0.9, gry: 0 }, // features
       { x: 0.0, y: -0.62, s: 1.15, gz: -3, gs: 0.5, gry: 0 }, // screens
-      { x: -0.74, y: 0.1, s: 0.55, gz: -1, gs: 0.85, gry: 0 }, // numbers
+      { x: -0.8, y: 0.34, s: 0.48, gz: -1, gs: 0.85, gry: 0 }, // numbers
       { x: 0.45, y: 0.0, s: 0.8, gz: -1, gs: 0.8, gry: 0 }, // privacy
       { x: 0.0, y: -0.66, s: 1.2, gz: -3, gs: 0.5, gry: 0 }, // compare
       { x: 0.0, y: 0.5, s: 0.5, gz: 0, gs: 1.3, gry: 0 }, // finale: follows .finale-orb, see anchorFinale
@@ -669,7 +672,7 @@ export async function createStage(canvas, { reducedMotion = false } = {}) {
     const settled = Math.abs(input.state - eased.state) < 0.002 && Math.abs(input.pose - eased.pose) < 0.002;
     idle = settled ? idle + dt : 0;
     frames++;
-    if (idle > 2 && eased.dim < 0.6 && frames % 2) return;
+    if (idle > 0.5 && eased.dim < 0.6 && frames % 2) return;
     composer.render(dt);
 
     // Step quality down on devices that cannot keep up: every 1.5 s, look at the median frame time of the frames

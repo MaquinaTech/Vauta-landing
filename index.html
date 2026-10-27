@@ -30,8 +30,7 @@
 <body>
   <div class="backdrop" aria-hidden="true"></div>
   <canvas id="stage" aria-hidden="true"></canvas>
-  <div class="grain" aria-hidden="true"></div>
-
+  
   <a class="skip" href="#main" data-i18n="skip">Skip to content</a>
 
   <header class="nav" id="nav">
@@ -64,7 +63,7 @@
       <div class="hero-copy">
         <p class="eyebrow reveal"><span class="dot dot-live"></span><span data-i18n="hero.eyebrow">Free &amp; open source · for Mac</span></p>
         <h1 class="display reveal" data-i18n="hero.title">Your meetings,<br><span class="grad">locked in your Mac.</span></h1>
-        <p class="lede reveal" data-i18n="hero.lede">Vauta listens to any call, transcribes it on your Mac and turns it into minutes, decisions and tasks you can search and ask about. No bot. No cloud. No account. Audio is never saved.</p>
+        <p class="lede reveal" data-i18n="hero.lede">Minutes, decisions and tasks from any call — transcribed on your Mac. No bot. No cloud. No account.</p>
         <div class="cta-row reveal">
           <a class="btn btn-primary" href="#install"><span data-i18n="hero.cta">Get Vauta — it’s free</span><svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><path d="M4 10h11m-4-4 4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
           <a class="btn btn-ghost" href="#how" data-i18n="hero.cta2">See how it works</a>
@@ -85,12 +84,16 @@
         <div class="step-card">
           <p class="step-num">01</p>
           <h2 class="title" data-i18n="s1.title">It hears what<br>your Mac hears.</h2>
-          <p class="body" data-i18n="s1.body">Your microphone comes in as <b class="me">Me</b>, the call as <b class="others">Others</b>: Zoom, Teams, Slack, FaceTime, Webex, or Meet in Safari, Chrome or Firefox. In a room, everything your Mac hears is Me. No bot joins, nobody else installs anything, and Vauta hands you a ready-to-paste notice to tell them.</p>
+          <p class="body" data-i18n="s1.body">Your mic is <b class="me">Me</b>, the call is <b class="others">Others</b>. Any app — and no bot joins.</p>
           <div class="meter" aria-hidden="true">
             <span class="meter-label" data-i18n="meter.me">Me</span><span class="meter-bar me-bar"><i></i></span>
             <span class="meter-label" data-i18n="meter.others">Others</span><span class="meter-bar others-bar"><i></i></span>
           </div>
-          <p class="fine step-fine" data-i18n="s1.fine">Verified in real calls so far: Safari. All system audio covers the rest.</p>
+          <ul class="apps" data-i18n-aria="aria.apps" aria-label="Works with">
+            <li>Zoom</li><li>Teams</li><li>Meet</li><li>FaceTime</li><li>Slack</li><li>Webex</li>
+          </ul>
+          <p class="notice"><svg viewBox="0 0 20 20" width="16" height="16" aria-hidden="true"><path d="M3.5 4h13v9H8l-4.5 3.5z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="m7.5 8.5 1.8 1.8 3.4-3.4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="s1.notice">A ready-to-paste notice for the others.</span></p>
+          <p class="fine step-fine" data-i18n="s1.fine">Captures all system audio; tested in real calls in Safari so far.</p>
         </div>
       </section>
 
@@ -98,8 +101,13 @@
         <div class="step-card">
           <p class="step-num">02</p>
           <h2 class="title" data-i18n="s2.title">It writes it down.<br>On your Mac.</h2>
-          <p class="body" data-i18n="s2.body">Apple’s speech recognizer transcribes both sides in memory, two small bundled models tell the other participants apart, and the model you choose writes the minutes: summary, decisions, tasks with owners and dates, open questions.</p>
-          <p class="quote-proof"><svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><path d="M10 1.8 12.2 4l3-.4.6 3 2.4 1.8-1.4 2.7.5 3-3 .8-1.4 2.7L10 16.4 7.1 17.6 5.7 14.9l-3-.8.5-3L1.8 8.4l2.4-1.8.6-3 3 .4z" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="m6.8 9.8 2.1 2.1 4.3-4.4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="s2.proof"><b>No quote, no item.</b> Every decision and task must quote the transcript word for word — and a name, date or figure that doesn’t match is marked Unconfirmed.</span></p>
+          <p class="body" data-i18n="s2.body">Transcribed in memory, speakers told apart, minutes written by the model you choose.</p>
+          <ul class="minutes live-viz" aria-hidden="true">
+            <li><span class="tag dec" data-i18n="s2.dec">Decision</span><span data-i18n="s2.dec.t">Beta ships Thursday</span><i class="q">“</i></li>
+            <li><span class="tag task" data-i18n="s2.task">Task</span><span data-i18n="s2.task.t">Ana · send the deck · Fri</span><i class="q">“</i></li>
+            <li><span class="tag ask" data-i18n="s2.open">Open</span><span data-i18n="s2.open.t">Pricing page?</span><i class="q">“</i></li>
+          </ul>
+          <p class="quote-proof"><svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><path d="M10 1.8 12.2 4l3-.4.6 3 2.4 1.8-1.4 2.7.5 3-3 .8-1.4 2.7L10 16.4 7.1 17.6 5.7 14.9l-3-.8.5-3L1.8 8.4l2.4-1.8.6-3 3 .4z" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="m6.8 9.8 2.1 2.1 4.3-4.4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="s2.proof"><b>No quote, no item.</b> Every decision and task quotes the transcript word for word.</span></p>
         </div>
       </section>
 
@@ -107,97 +115,115 @@
         <div class="step-card">
           <p class="step-num">03</p>
           <h2 class="title" data-i18n="s3.title">Then it locks<br>it away.</h2>
-          <p class="body" data-i18n="s3.body">Audio is never written to disk. Transcripts and minutes are encrypted with AES-256-GCM, the key lives in your Keychain, and the Meetings window opens with Touch ID or your password. Nothing goes to a Vauta cloud — there isn’t one.</p>
-          <ul class="ticks">
-            <li data-i18n="s3.t1">Audio transcribed in memory, then discarded</li>
-            <li data-i18n="s3.t2">Encrypted store, key in your Keychain</li>
-            <li data-i18n="s3.t3">No telemetry, analytics, crash reports or account</li>
-            <li data-i18n="s3.t4">Transcripts deleted after 90 days; minutes kept as long as you choose</li>
+          <p class="body" data-i18n="s3.body">Audio is never saved. Everything else is encrypted, with the key in your Keychain.</p>
+          <ul class="vault-facts">
+            <li><b>0&nbsp;s</b><span data-i18n="s3.f1">audio on disk</span></li>
+            <li><b>AES-256</b><span data-i18n="s3.f2">encrypted store</span></li>
+            <li><b>Touch&nbsp;ID</b><span data-i18n="s3.f3">to open</span></li>
+            <li><b data-i18n="s3.f4v">No</b><span data-i18n="s3.f4">account or telemetry</span></li>
+            <li class="wide"><b data-i18n="s3.f5v">90 days</b><span data-i18n="s3.f5">then transcripts delete themselves; minutes stay as long as you choose</span></li>
           </ul>
         </div>
       </section>
     </div>
 
     <!-- Features -->
-    <section class="section" id="features" data-scene="3" data-pose="4" data-dim="0.32" data-dim-tall="0.2">
+    <section class="section" id="features" data-anchor=".section-head" data-scene="3" data-pose="4" data-dim="0.32" data-dim-tall="0.2">
       <header class="section-head">
         <p class="kicker" data-i18n="f.kicker">Everything a meeting leaves behind</p>
         <h2 class="headline" data-i18n="f.title">A memory for every meeting.<br><span class="grad">Without giving it away.</span></h2>
       </header>
       <div class="bento">
         <article class="card card-wide card-translate reveal">
-          <div class="card-text">
-            <h3 data-i18n="f.translate.t">Live Translation</h3>
-            <p data-i18n="f.translate.b">A floating captions panel translates what the others say into your language as they speak, on device with Apple’s Translation and optionally polished by your own model server. It stays above full-screen apps and never steals focus. <kbd>⌃⌥T</kbd></p>
+          <div class="viz captions live-viz" aria-hidden="true">
+            <p class="cap-live"><i></i><span data-i18n="f.translate.live">Live captions</span></p>
+            <div class="cap"><p class="cap-src"><span class="others" data-i18n="meter.others">Others</span> <span data-i18n="f.cap1.src">Podemos lanzar la beta el jueves.</span></p><p class="cap-dst" data-i18n="f.cap1.dst">We can ship the beta on Thursday.</p></div>
+            <div class="cap"><p class="cap-src"><span class="others" data-i18n="meter.others">Others</span> <span data-i18n="f.cap2.src">Dejamos los precios para la semana que viene.</span></p><p class="cap-dst" data-i18n="f.cap2.dst">Let’s leave pricing for next week.</p></div>
+            <div class="cap"><p class="cap-src"><span class="others" data-i18n="meter.others">Others</span> <span data-i18n="f.cap3.src">¿Me mandas la presentación después?</span></p><p class="cap-dst" data-i18n="f.cap3.dst">Can you send me the deck afterwards?</p></div>
           </div>
-          <div class="captions" aria-hidden="true">
-            <p class="cap-src"><span class="others" data-i18n="meter.others">Others</span> <span data-i18n="f.translate.src">We can ship the beta on Thursday.</span></p>
-            <p class="cap-dst" data-i18n="f.translate.dst">Podemos lanzar la beta el jueves.</p>
-          </div>
+          <h3 data-i18n="f.translate.t">Live Translation</h3>
+          <p data-i18n="f.translate.b">The others, in your language, as they speak.</p>
         </article>
 
         <article class="card reveal">
-          <div class="icon-tile" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5h16v10H9l-5 4z"/><path d="M8 9h8M8 12h5"/></svg></div>
+          <div class="viz chat live-viz" aria-hidden="true">
+            <p class="bubble q" data-i18n="f.ask.q">What did we decide about the beta?</p>
+            <p class="bubble a"><span data-i18n="f.ask.a">Thursday, small teams first.</span> <span class="cite">▶ 12:04</span></p>
+          </div>
           <h3 data-i18n="f.ask.t">Ask, with citations</h3>
-          <p data-i18n="f.ask.b">Ask across every meeting. Each answer cites the moment it came from and one click opens the transcript right there — and an answer whose quotes can’t be found says Not verified.</p>
+          <p data-i18n="f.ask.b">Every answer cites the moment it came from.</p>
         </article>
 
         <article class="card reveal">
-          <div class="icon-tile" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="8" cy="8" r="3"/><circle cx="16.5" cy="9.5" r="2.5"/><path d="M3 19c.6-3 2.6-5 5-5s4.4 2 5 5M13 18.5c.5-2.3 1.8-3.8 3.5-3.8s3 1.5 3.5 3.8"/></svg></div>
+          <div class="viz speakers live-viz" aria-hidden="true">
+            <span class="spk me"><i></i><b data-i18n="meter.me">Me</b></span>
+            <span class="spk s1"><i></i><b class="rename"><span data-i18n="f.speakers.s1">Speaker 1</span><span>Ana</span></b></span>
+            <span class="spk s2"><i></i><b data-i18n="f.speakers.s2">Speaker 2</b></span>
+          </div>
           <h3 data-i18n="f.speakers.t">Who said what</h3>
-          <p data-i18n="f.speakers.b">The other participants become Speaker 1, Speaker 2… on your Mac. Name them once and the names flow into tasks, search and exports: Markdown, PDF, SRT, WebVTT, JSON.</p>
+          <p data-i18n="f.speakers.b">Name them once. It carries everywhere.</p>
         </article>
 
         <article class="card reveal">
-          <div class="icon-tile" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M9 11h7M9 14.5h7M9 18h4"/></svg></div>
+          <div class="viz note live-viz" aria-hidden="true">
+            <p class="note-in"><span data-i18n="f.notepad.in">beta thu, small teams first</span></p>
+            <p class="note-out" data-i18n="f.notepad.out">The beta ships on Thursday, to small teams first.<sup>1</sup></p>
+          </div>
           <h3 data-i18n="f.notepad.t">Shorthand in, full notes out</h3>
-          <p data-i18n="f.notepad.b">Type “beta thu, small teams first”. Vauta writes the full note from what was said, every sentence cited, your words always first.</p>
+          <p data-i18n="f.notepad.b">Every sentence cited. Your words first.</p>
         </article>
 
         <article class="card reveal">
-          <div class="icon-tile" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="3"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg></div>
+          <div class="viz brief live-viz" aria-hidden="true">
+            <div class="brief-card">
+              <p class="brief-when" data-i18n="f.brief.when">In 10 min · Roadmap sync</p>
+              <p class="brief-line"><i class="d1"></i><span data-i18n="f.brief.l1">Ana, Luis + 2</span></p>
+              <p class="brief-line"><i class="d2"></i><span data-i18n="f.brief.l2">Still open: pricing</span></p>
+              <p class="brief-line"><i class="d3"></i><span>Q3-plan.pdf</span></p>
+            </div>
+          </div>
           <h3 data-i18n="f.brief.t">A brief before you join</h3>
-          <p data-i18n="f.brief.b">With Calendar on, by default ten minutes before a meeting: who is coming, what the last one left open, related meetings and documents.</p>
+          <p data-i18n="f.brief.b">Who’s coming and what’s still open.</p>
         </article>
 
         <article class="card reveal">
-          <div class="icon-tile" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 7.5 6 9.5l3.5-4M4 15.5l2 2 3.5-4M13 8h7M13 16h7"/></svg></div>
+          <div class="viz follow live-viz" aria-hidden="true">
+            <div class="task-row"><span class="box"></span><span class="task-text" data-i18n="f.follow.task">Send the deck · Fri</span></div>
+            <div class="follow-act"><span class="add" data-i18n="f.follow.add">Add to Reminders</span><p class="added" data-i18n="f.follow.added">Added to Reminders</p></div>
+          </div>
           <h3 data-i18n="f.follow.t">Follow up, your way</h3>
-          <p data-i18n="f.follow.b">Open tasks become Reminders, the next meeting a Calendar event. Nothing is written until you press Add — and Undo takes it back.</p>
+          <p data-i18n="f.follow.b">To Reminders and Calendar — only when you press Add.</p>
         </article>
 
         <article class="card reveal">
-          <div class="icon-tile" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M8 13h8"/></svg></div>
+          <div class="viz docs live-viz" aria-hidden="true">
+            <span class="doc d-pdf">PDF</span><span class="doc d-doc">DOCX</span><span class="doc d-xls">XLSX</span><span class="doc d-ppt">PPTX</span><span class="doc d-md">MD</span>
+            <span class="doc-lock"><svg viewBox="0 0 24 24" width="22" height="22"><rect x="5" y="10.5" width="14" height="10" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M8.5 10.5V8a3.5 3.5 0 0 1 7 0v2.5" fill="none" stroke="currentColor" stroke-width="1.7"/></svg></span>
+          </div>
           <h3 data-i18n="f.docs.t">Your documents, too</h3>
-          <p data-i18n="f.docs.b">PDF, Word, Excel, PowerPoint, Markdown, images… in an encrypted index that never changes your files, so Ask answers from them with a verified quote.</p>
+          <p data-i18n="f.docs.b">Ask your files. Encrypted index, verified quotes.</p>
+        </article>
+
+        <article class="card reveal">
+          <div class="viz langs live-viz" aria-hidden="true">
+            <div class="langs-roll"><span>Hola</span><span>Hello</span><span>Bonjour</span><span>Hallo</span><span>Ciao</span><span>Olá</span><span>Hola</span></div>
+          </div>
+          <h3 data-i18n="f.lang.t">Any language Apple speaks</h3>
+          <p data-i18n="f.lang.b">Minutes in the meeting’s language or yours.</p>
         </article>
 
         <article class="card card-wide card-models reveal">
-          <div class="card-text">
-            <h3 data-i18n="f.models.t">Your model, your rules</h3>
-            <p data-i18n="f.models.b">Start with Apple Intelligence on this Mac: no setup, basic quality. On a Mac with 16 GB or more, the optional integrated Gemma 4 model reads a whole meeting at once on your GPU. Or use your own server — LM Studio, Ollama, llama.cpp, MLX, vLLM — on this Mac or your local network: bigger models, better minutes. Vauta refuses any model server on the internet.</p>
+          <div class="viz models live-viz" aria-hidden="true">
+            <div class="model-track">
+              <span class="opt"><b>Apple Intelligence</b><small data-i18n="f.models.o1">On this Mac</small></span>
+              <span class="opt"><b>Gemma 4</b><small data-i18n="f.models.o2">On your GPU</small></span>
+              <span class="opt"><b data-i18n="f.models.o3">Your server</b><small>LM Studio · Ollama · MLX</small></span>
+              <i class="model-thumb"></i>
+            </div>
+            <p class="model-no"><svg viewBox="0 0 16 16" width="14" height="14"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span data-i18n="f.models.no">Model servers on the internet: refused</span></p>
           </div>
-          <ul class="model-pills" data-i18n-aria="aria.models" aria-label="Model options">
-            <li><span class="pill-dot a"></span>Apple Intelligence</li>
-            <li><span class="pill-dot b"></span>Gemma 4 E4B</li>
-            <li><span class="pill-dot c"></span>LM Studio</li>
-            <li><span class="pill-dot c"></span>Ollama</li>
-            <li><span class="pill-dot c"></span>llama.cpp</li>
-            <li><span class="pill-dot c"></span>MLX</li>
-            <li><span class="pill-dot c"></span>vLLM</li>
-          </ul>
-        </article>
-
-        <article class="card reveal">
-          <div class="icon-tile" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.5 2.6 3.6 5.4 3.6 8.5s-1.1 5.9-3.6 8.5c-2.5-2.6-3.6-5.4-3.6-8.5S9.5 6.1 12 3.5z"/></svg></div>
-          <h3 data-i18n="f.lang.t">Any language Apple speaks</h3>
-          <p data-i18n="f.lang.b">Transcription in every language Apple’s recognizer supports. Minutes in the meeting’s language or yours. Interface in 9 languages.</p>
-        </article>
-
-        <article class="card reveal">
-          <div class="icon-tile" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H10l-4.5 3.5V16H4z"/><path d="m9 10.5 2 2 4-4"/></svg></div>
-          <h3 data-i18n="f.consent.t">A heads-up, not a bot</h3>
-          <p data-i18n="f.consent.b">When you start recording, Vauta offers a short notice in the meeting’s language to paste into the chat, and remembers when you marked everyone as informed. It never sends it for you.</p>
+          <h3 data-i18n="f.models.t">Your model, your rules</h3>
+          <p data-i18n="f.models.b">On your Mac, or on your own server at home or at work.</p>
         </article>
       </div>
     </section>
@@ -207,7 +233,6 @@
       <header class="section-head">
         <p class="kicker" data-i18n="sc.kicker">Native. Quiet. Fast.</p>
         <h2 class="headline" data-i18n="sc.title">Lives in your menu bar.<br><span class="grad">Feels like part of macOS.</span></h2>
-        <p class="sub" data-i18n="sc.sub">Written in Swift and SwiftUI with Apple’s own frameworks and a single third-party package, MLX. The panel while you record, the Meetings window after.</p>
       </header>
       <div class="tabs" role="tablist" data-i18n-aria="aria.screens" aria-label="Screens">
         <button role="tab" type="button" id="tab-meetings-minutes" aria-controls="device" aria-selected="true" data-shot="meetings-minutes" data-i18n="sc.tab.minutes">Minutes</button>
@@ -226,7 +251,7 @@
           <img id="panel" src="img/panel-en-720.webp" srcset="img/panel-en-400.webp 400w, img/panel-en-720.webp 720w" sizes="(max-width: 700px) 38vw, 260px" width="720" height="1678" alt="The menu-bar panel while recording: timer, audio levels for you and the others, quick notes and live notes." loading="lazy" decoding="async">
         </div>
       </div>
-      <p class="fine center" data-i18n="sc.fine">Real screenshots with invented sample meetings.</p>
+      <p class="fine center" data-i18n="sc.fine">Real screenshots with invented sample meetings. Native Swift and SwiftUI.</p>
     </section>
 
     <!-- Numbers -->
@@ -236,32 +261,44 @@
         <h2 class="headline" data-i18n="n.title">Fast enough to forget it’s there.<br><span class="grad">Honest enough to show the method.</span></h2>
       </header>
       <div class="stats">
-        <div class="stat reveal">
+        <div class="stat stat-wide reveal">
           <p class="stat-value"><span class="count" data-value="158" data-decimals="0">158</span><span class="unit">×</span></p>
-          <p class="stat-label" data-i18n="n.diaSpeed">faster than real time at telling speakers apart&nbsp;— 7&nbsp;hours of audio in under 3&nbsp;minutes</p>
+          <p class="stat-label" data-i18n="n.diaSpeed">faster than real time at telling speakers apart</p>
+          <div class="ratio" aria-hidden="true">
+            <p><span data-i18n="n.ratio.audio">7 h of audio</span><i class="bar-audio"></i></p>
+            <p><span>Vauta</span><i class="bar-vauta"></i><em data-i18n="n.ratio.vauta">&lt; 3 min</em></p>
+          </div>
         </div>
         <div class="stat reveal">
           <p class="stat-value"><span class="count" data-value="110" data-decimals="0">110</span><span class="unit">×</span></p>
-          <p class="stat-label" data-i18n="n.asrSpeed">faster than real time transcribing recorded test files on an M2, entirely on device</p>
+          <p class="stat-label" data-i18n="n.asrSpeed">faster than real time, transcribing on device</p>
+          <p class="stat-qual" data-i18n="n.asrQual">Recorded test files on an M2</p>
         </div>
         <div class="stat reveal">
           <p class="stat-value"><span class="count" data-value="9.5" data-decimals="1">9.5</span><span class="unit pct">%</span></p>
-          <p class="stat-label" data-i18n="n.der">diarization error rate on 19 held-out English recordings, settings not chosen on them (9.4% on the 18&nbsp;used for tuning)</p>
+          <p class="stat-label" data-i18n="n.der">speaker error rate (DER)</p>
+          <p class="stat-qual" data-i18n="n.derQual">19 held-out English recordings</p>
         </div>
         <div class="stat reveal">
           <p class="stat-value"><span class="count" data-value="7.6" data-decimals="1">7.6</span><span class="unit pct">%</span></p>
-          <p class="stat-label" data-i18n="n.werEs">word error rate in Spanish on read speech (parliament and audiobooks), not conversation</p>
+          <p class="stat-label" data-i18n="n.werEs">word error rate in Spanish</p>
+          <p class="stat-qual" data-i18n="n.werQual">Read speech, not conversation</p>
         </div>
         <div class="stat reveal">
           <p class="stat-value"><span class="count" data-value="1" data-decimals="0">1</span></p>
-          <p class="stat-label" data-i18n="n.path">door to the network: every connection goes through one audited code path, and a test fails if anyone adds another</p>
+          <p class="stat-label" data-i18n="n.path">door to the network</p>
+          <p class="stat-qual" data-i18n="n.pathQual">One audited code path; a test enforces it</p>
         </div>
         <div class="stat reveal">
           <p class="stat-value"><span class="count" data-value="0" data-decimals="0">0</span></p>
-          <p class="stat-label" data-i18n="n.audio">seconds of audio Vauta writes to disk. Ever.</p>
+          <p class="stat-label" data-i18n="n.audio">seconds of audio written to disk</p>
+          <p class="stat-qual" data-i18n="n.audioQual">Ever.</p>
         </div>
       </div>
-      <p class="fine center" data-i18n="n.fine">Apple M2, 24 GB, macOS 27, release build. Public corpora (AMI meetings, VoxConverse, Spanish parliament speech and audiobooks) built to resemble one side of a call — not real calls. Speaker figures score the remote speakers’ speech with a 0.25 s collar. Every figure is reproducible with the evaluation harness in the repository. <a href="https://github.com/MaquinaTech/Vauta/blob/main/docs/BENCHMARKS.md">Method and limits →</a></p>
+      <details class="method">
+        <summary data-i18n="n.how">Apple M2 · public corpora, not real calls · How we measured</summary>
+        <p class="fine" data-i18n="n.fine">Apple M2, 24 GB, macOS 27, release build. Public corpora (AMI meetings, VoxConverse, Spanish parliament speech and audiobooks) built to resemble one side of a call — not real calls. Speaker figures score the remote speakers’ speech with a 0.25 s collar; settings were tuned on 18 other recordings (9.4% there). <a href="https://github.com/MaquinaTech/Vauta/blob/main/docs/BENCHMARKS.md">Method and limits →</a></p>
+      </details>
     </section>
 
     <!-- Privacy -->
@@ -270,12 +307,12 @@
         <div class="privacy-copy">
           <p class="kicker" data-i18n="p.kicker">Privacy you can audit</p>
           <h2 class="headline" data-i18n="p.title">Don’t trust us.<br><span class="grad">Check.</span></h2>
-          <p class="sub" data-i18n="p.sub">Network Activity lists every connection Vauta makes — where, when and how much, never the content. Every request goes through one audited code path, and a test fails if any other file opens a connection.</p>
-          <ul class="ticks">
-            <li data-i18n="p.t1">Your meetings go only to the model server you choose, on this Mac or your local network — and nowhere at all with Apple Intelligence or the integrated model</li>
-            <li data-i18n="p.t2">Never sends your meetings to the internet: no proxy, no redirects. The only internet request is an optional model download you start, and it carries nothing about you</li>
-            <li data-i18n="p.t3">Never listens for incoming connections; App Sandbox and hardened runtime</li>
-            <li data-i18n="p.t4">Open source: read every line, build it yourself</li>
+          <p class="sub" data-i18n="p.sub">Every connection Vauta makes is listed in the app. Never the content.</p>
+          <ul class="guards">
+            <li><svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><rect x="2.5" y="4" width="15" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M7 17h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span data-i18n="p.g1">Meetings go only to a model server you choose — or nowhere</span></li>
+            <li><svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><path d="M10 3v9m0 0-3.5-3.5M10 12l3.5-3.5M4 16h12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="p.g2">The internet only for a model download you start</span></li>
+            <li><svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><circle cx="10" cy="10" r="7" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M5 15 15 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span data-i18n="p.g3">Never accepts incoming connections</span></li>
+            <li><svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><path d="m7 6-4 4 4 4m6-8 4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="p.g4">Open source: read it, build it</span></li>
           </ul>
         </div>
         <figure class="netlog reveal" data-i18n-aria="aria.netlog" aria-label="Illustration of Vauta's Network Activity window">
@@ -298,34 +335,18 @@
     <!-- Compare -->
     <section class="section" id="compare" data-scene="4" data-pose="8" data-dim="0.24" data-dim-tall="0.18">
       <header class="section-head">
-        <p class="kicker" data-i18n="c.kicker">Why Vauta</p>
-        <h2 class="headline" data-i18n="c.title">Built the other way round.</h2>
-        <p class="sub" data-i18n="c.sub">Cloud notetakers work by sending your conversations to their servers. Vauta was built so they never leave your Mac or your own network.</p>
+        <p class="kicker" data-i18n="c.kicker">Vauta vs. the rest</p>
+        <h2 class="headline" data-i18n="c.title">They send your meeting to the cloud.<br><span class="grad">Vauta keeps it.</span></h2>
       </header>
-      <div class="compare reveal">
-        <table>
-          <thead>
-            <tr>
-              <th scope="col"><span class="sr" data-i18n="c.feature">Feature</span></th>
-              <th scope="col" class="col-vauta"><img src="img/icon-256.webp" width="26" height="26" alt=""><span>Vauta</span></th>
-              <th scope="col" data-i18n="c.bots">Cloud meeting bots</th>
-              <th scope="col" data-i18n="c.apps">Cloud AI notetakers</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><th scope="row" data-i18n="c.r1">No bot joins your call</th><td class="col-vauta"><i class="yes" role="img" data-i18n-aria="c.l.yes" aria-label="Yes"></i></td><td><i class="no" role="img" data-i18n-aria="c.l.no" aria-label="Typically not"></i></td><td><i class="yes" role="img" data-i18n-aria="c.l.yes" aria-label="Yes"></i></td></tr>
-            <tr><th scope="row" data-i18n="c.r2">Transcribed on your own computer</th><td class="col-vauta"><i class="yes" role="img" data-i18n-aria="c.l.yes" aria-label="Yes"></i></td><td><i class="no" role="img" data-i18n-aria="c.l.no" aria-label="Typically not"></i></td><td><i class="no" role="img" data-i18n-aria="c.l.no" aria-label="Typically not"></i></td></tr>
-            <tr><th scope="row" data-i18n="c.r3">Audio never stored</th><td class="col-vauta"><i class="yes" role="img" data-i18n-aria="c.l.yes" aria-label="Yes"></i></td><td><i class="no" role="img" data-i18n-aria="c.l.no" aria-label="Typically not"></i></td><td><i class="maybe" role="img" data-i18n-aria="c.l.maybe" aria-label="Depends on the service or plan"></i></td></tr>
-            <tr><th scope="row" data-i18n="c.r4">No account, no sign-in</th><td class="col-vauta"><i class="yes" role="img" data-i18n-aria="c.l.yes" aria-label="Yes"></i></td><td><i class="no" role="img" data-i18n-aria="c.l.no" aria-label="Typically not"></i></td><td><i class="no" role="img" data-i18n-aria="c.l.no" aria-label="Typically not"></i></td></tr>
-            <tr><th scope="row" data-i18n="c.r5">Choose where the AI runs</th><td class="col-vauta"><i class="yes" role="img" data-i18n-aria="c.l.yes" aria-label="Yes"></i></td><td><i class="no" role="img" data-i18n-aria="c.l.no" aria-label="Typically not"></i></td><td><i class="no" role="img" data-i18n-aria="c.l.no" aria-label="Typically not"></i></td></tr>
-            <tr><th scope="row" data-i18n="c.r6">Every connection listed, in the app</th><td class="col-vauta"><i class="yes" role="img" data-i18n-aria="c.l.yes" aria-label="Yes"></i></td><td><i class="no" role="img" data-i18n-aria="c.l.no" aria-label="Typically not"></i></td><td><i class="no" role="img" data-i18n-aria="c.l.no" aria-label="Typically not"></i></td></tr>
-            <tr><th scope="row" data-i18n="c.r7">Open source</th><td class="col-vauta"><i class="yes" role="img" data-i18n-aria="c.l.yes" aria-label="Yes"></i></td><td><i class="no" role="img" data-i18n-aria="c.l.no" aria-label="Typically not"></i></td><td><i class="no" role="img" data-i18n-aria="c.l.no" aria-label="Typically not"></i></td></tr>
-            <tr><th scope="row" data-i18n="c.r8">Free, no subscription</th><td class="col-vauta"><i class="yes" role="img" data-i18n-aria="c.l.yes" aria-label="Yes"></i></td><td><i class="maybe" role="img" data-i18n-aria="c.l.maybe" aria-label="Depends on the service or plan"></i></td><td><i class="maybe" role="img" data-i18n-aria="c.l.maybe" aria-label="Depends on the service or plan"></i></td></tr>
-          </tbody>
-        </table>
-        <p class="legend"><span><i class="yes" aria-hidden="true"></i><span data-i18n="c.l.yes">Yes</span></span><span><i class="maybe" aria-hidden="true"></i><span data-i18n="c.l.maybe">Depends on the service or plan</span></span><span><i class="no" aria-hidden="true"></i><span data-i18n="c.l.no">Typically not</span></span></p>
+      <div class="vs reveal">
+        <div class="vs-picker" role="tablist" data-i18n-aria="aria.compare" aria-label="Compare Vauta with">
+<!-- vs-picker -->
+        </div>
+        <div class="vs-board" id="vs-board" role="tabpanel">
+<!-- vs-board -->
+        </div>
       </div>
-      <p class="fine center" data-i18n="c.fine">Columns describe how those kinds of services typically work, not any specific product. Check each service’s own terms.</p>
+      <p class="fine center" data-i18n="c.fine">Vendors’ public docs on 27 October 2026, for the feature named and its default settings. Plans change — check their sites. Names are trademarks of their owners; Vauta is not affiliated. <a href="https://github.com/MaquinaTech/Vauta-landing/issues">Spotted an error?</a></p>
     </section>
 
     <!-- Install -->
@@ -333,7 +354,7 @@
       <div class="finale-inner">
         <div class="finale-orb" aria-hidden="true"></div>
         <h2 class="display finale-title reveal" data-i18n="i.title">Your next meeting<br><span class="grad">stays yours.</span></h2>
-        <p class="lede center reveal" data-i18n="i.lede">Vauta is free and open source. Build it on your own Mac with a handful of commands — that is also how you know exactly what you run.</p>
+        <p class="lede center reveal" data-i18n="i.lede">Free and open source. Build it on your Mac in a few commands — and know exactly what you run.</p>
         <div class="terminal reveal">
           <div class="terminal-bar"><i></i><i></i><i></i><span>Terminal</span>
             <button type="button" class="copy" id="copy" data-i18n="i.copy">Copy</button>
@@ -346,7 +367,10 @@
           <button type="button" class="btn btn-ghost share" id="share" hidden data-i18n="i.share">Send the link to my Mac</button>
           <a class="btn btn-ghost" href="https://github.com/MaquinaTech/Vauta#install-from-source" data-i18n="i.cta2">Installation guide</a>
         </div>
-        <p class="fine center reveal" data-i18n="i.req">Needs a Mac with Apple silicon, macOS 26 or later, and Apple’s Command Line Tools with the macOS 27 SDK (Swift 6.4). No Xcode, no Apple account, no prebuilt app to trust.</p>
+        <ul class="req reveal" data-i18n-aria="aria.req" aria-label="Requirements">
+          <li>Apple silicon</li><li>macOS 26+</li><li data-i18n="i.req.clt">Command Line Tools · macOS 27 SDK</li>
+        </ul>
+        <p class="fine center reveal" data-i18n="i.req">No Xcode, no Apple account, nothing prebuilt to trust.</p>
       </div>
     </section>
   </main>
