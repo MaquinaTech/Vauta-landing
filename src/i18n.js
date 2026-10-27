@@ -40,7 +40,7 @@ export const strings = {
     's2.dec': 'Decisión',
     's2.dec.t': 'La beta sale el jueves',
     's2.task': 'Tarea',
-    's2.task.t': 'Ana · enviar la presentación · vie',
+    's2.task.t': 'Alicia · enviar la presentación · vie',
     's2.open': 'Abierta',
     's2.open.t': '¿Página de precios?',
     's2.proof': '<b>Cada punto tiene su fuente.</b> Cada decisión y tarea cita la transcripción; lo que no puede respaldar se marca como no confirmado.',
