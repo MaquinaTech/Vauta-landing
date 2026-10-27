@@ -1377,18 +1377,21 @@ b.others,
   .rename > span { opacity: 1; }
   .rename > span + span { opacity: 0; }
 
+  /* One 12 s turn: Me speaks, Speaker 1 speaks and is named Alicia, Speaker 2 speaks and is named Marco, then reset. */
   .spk i::after,
-  .spk .eq { animation: speaking 9s ease-in-out infinite backwards; }
-  .spk.s1 .eq { animation-delay: 3s; }
-  .spk.s2 .eq { animation-delay: 6s; }
+  .spk .eq { animation: speaking 12s ease-in-out infinite backwards; }
+  .spk.s1 .eq { animation-delay: 3.6s; }
+  .spk.s2 .eq { animation-delay: 7.2s; }
   .eq s { animation: level 0.8s ease-in-out infinite alternate; }
   .eq s:nth-child(2) { animation-duration: 0.62s; animation-delay: -0.3s; }
   .eq s:nth-child(3) { animation-duration: 0.9s; animation-delay: -0.5s; }
   .eq s:nth-child(4) { animation-duration: 0.7s; animation-delay: -0.2s; }
-  .spk.s1 i::after { animation-delay: 3s; }
-  .spk.s2 i::after { animation-delay: 6s; }
+  .spk.s1 i::after { animation-delay: 3.6s; }
+  .spk.s2 i::after { animation-delay: 7.2s; }
   .rename > span { animation: name-out 12s var(--ease) infinite backwards; }
   .rename > span + span { animation-name: name-in; }
+  .s2 .rename > span { animation-name: name-out-2; }
+  .s2 .rename > span + span { animation-name: name-in-2; }
 
   .note-in span { animation: type-in 11s steps(27, end) infinite backwards; }
   :lang(es) .note-in span { animation-timing-function: steps(22, end); }
@@ -1424,8 +1427,8 @@ b.others,
 
 @keyframes speaking {
   0% { opacity: 0; transform: scale(0.94); }
-  6%, 27% { opacity: 1; transform: none; }
-  33.3%, 100% { opacity: 0; transform: none; }
+  4%, 24% { opacity: 1; transform: none; }
+  28%, 100% { opacity: 0; transform: none; }
 }
 
 @keyframes level {
@@ -1435,14 +1438,26 @@ b.others,
 
 @keyframes name-out {
   0%, 40% { opacity: 1; }
-  46%, 92% { opacity: 0; }
-  100% { opacity: 1; }
+  44%, 94% { opacity: 0; }
+  98%, 100% { opacity: 1; }
 }
 
 @keyframes name-in {
   0%, 40% { opacity: 0; }
-  46%, 92% { opacity: 1; }
-  100% { opacity: 0; }
+  44%, 94% { opacity: 1; }
+  98%, 100% { opacity: 0; }
+}
+
+@keyframes name-out-2 {
+  0%, 70% { opacity: 1; }
+  74%, 94% { opacity: 0; }
+  98%, 100% { opacity: 1; }
+}
+
+@keyframes name-in-2 {
+  0%, 70% { opacity: 0; }
+  74%, 94% { opacity: 1; }
+  98%, 100% { opacity: 0; }
 }
 
 @keyframes type-in {
