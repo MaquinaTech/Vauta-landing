@@ -330,6 +330,8 @@ function measure() {
     const dim = Number(tall && el.dataset.dimTall ? el.dataset.dimTall : el.dataset.dim);
     return { y, state: Number(el.dataset.scene), dim, pose: Number(el.dataset.pose) };
   });
+  // A section can hold marks of its own parts (its headline, its list), so put them in reading order.
+  marks.sort((a, b) => a.y - b.y);
 }
 
 // On tall screens, fit the stage into the free space above the hero copy and above each step card.

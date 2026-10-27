@@ -2,9 +2,10 @@
 // SPDX-FileCopyrightText: 2026 Nicolás López de Lerma López
 
 // The 3D stage behind the page: a glass Vauta icon with its waveform glowing inside, and a particle field that
-// morphs with the scroll between five shapes: the two voices spiralling into the glass (0), the Me and Others
-// waveforms (1), a page of minutes (2), a vault around the glass (3) and a calm horizon disk (4). State 5 is
-// state 0 again, for the finale. Where the stage sits on screen is a separate input, the pose of each section.
+// morphs with the scroll between six shapes: the two voices spiralling into the glass (0), the Me and Others
+// waveforms (1), a page of minutes (2), a vault around the glass (3), a calm horizon disk (4) and a constellation of
+// meetings, documents and people linked to the glass (5). Where the stage sits on screen is a separate input, the
+// pose of each section.
 
 import * as THREE from 'three';
 import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
@@ -24,6 +25,13 @@ const COLORS = {
   lavender: '#c9cbff',
   white: '#ffffff',
 };
+
+// The constellation of shape 5: meetings (0), documents (1) and people (2) around the glass, in scene units.
+const NODES = [
+  [2.4, 0.9, 0.4, 0], [-2.2, 1.3, -0.6, 0], [0.6, 2.1, -1.2, 0], [-1.0, -1.9, 0.8, 0], [2.0, -1.4, -0.9, 0],
+  [-2.7, -0.3, 0.9, 1], [1.2, -2.2, 1.0, 1], [-0.4, 1.0, 2.2, 1], [2.9, 0.1, -1.6, 1],
+  [-1.6, 2.2, 0.9, 2], [0.2, -0.6, -2.6, 2], [-2.5, -1.6, -1.4, 2],
+];
 
 // Bar heights of the app icon's waveform, left to right.
 const ICON_BARS = [0.22, 0.45, 0.79, 0.55, 1.0, 0.7, 0.88, 0.43, 0.22];
@@ -47,6 +55,7 @@ const particleVertex = /* glsl */ `
   attribute vec3 aP1;
   attribute vec3 aP2;
   attribute vec3 aP3;
+  attribute vec4 aP4;
   varying vec3 vColor;
   varying float vAlpha;
 
@@ -137,11 +146,35 @@ const particleVertex = /* glsl */ `
     a = 0.5 * smoothstep(7.6, 5.0, r);
   }
 
+  // 5: meetings, documents and people, each linked to the glass and to its nearest neighbours. aP4.w is the
+  // node's kind for a node (-1 meeting, -2 document, -3 person) and edge number + position along it for a link.
+  void network(out vec3 p, out vec3 col, out float a) {
+    p = aP4.xyz;
+    p.xz = rot(uTime * 0.07) * p.xz;
+    p.yz = rot(0.22) * p.yz;
+    if (aP4.w < 0.0) {
+      float kind = -aP4.w;
+      col = kind < 1.5 ? cTeal : (kind < 2.5 ? cLavender : cOthers);
+      col = mix(col, cWhite, 0.2 * aSeed.z);
+      a = 0.75 * (0.85 + 0.15 * sin(uTime * 1.3 + aSeed.y * 20.0));
+    } else {
+      float edge = floor(aP4.w);
+      float u = fract(aP4.w);
+      // A slow pulse runs along every link towards the glass, each link at its own time.
+      float d = u - fract(uTime * 0.16 + hash(edge * 7.13));
+      float pulse = exp(-d * d * 260.0);
+      col = mix(mix(cIndigo, cLavender, 0.45), cTeal, pulse);
+      col = mix(col, cWhite, pulse * 0.4);
+      a = 0.22 + 0.55 * pulse;
+    }
+  }
+
   void shape(int s, out vec3 p, out vec3 col, out float a) {
     if (s == 1) { waves(p, col, a); }
     else if (s == 2) { page(p, col, a); }
     else if (s == 3) { vault(p, col, a); }
     else if (s == 4) { disk(p, col, a); }
+    else if (s == 5) { network(p, col, a); }
     else { hero(p, col, a); }
   }
 
@@ -223,7 +256,29 @@ function buildParticles(count) {
   const p1 = new Float32Array(count * 3);
   const p2 = new Float32Array(count * 3);
   const p3 = new Float32Array(count * 3);
+  const p4 = new Float32Array(count * 4);
   const dustShare = 0.16;
+
+  // The constellation: every node links to the glass and to its two nearest neighbours.
+  const edges = NODES.map((n) => [null, n]);
+  NODES.forEach((n, i) => {
+    NODES.map((m, j) => [Math.hypot(n[0] - m[0], n[1] - m[1], n[2] - m[2]), j])
+      .filter(([, j]) => j !== i)
+      .sort((x, y) => x[0] - y[0])
+      .slice(0, 2)
+      .forEach(([, j]) => {
+        if (!edges.some(([a, b]) => (a === NODES[j] && b === n) || (a === n && b === NODES[j]))) edges.push([n, NODES[j]]);
+      });
+  });
+  // A link to the glass starts at its rim, not its centre.
+  const ends = edges.map(([a, b]) => {
+    const to = b.slice(0, 3);
+    if (a) return [a.slice(0, 3), to];
+    const len = Math.hypot(...to);
+    return [to.map((v) => (v / len) * 0.8), to];
+  });
+  const lengths = ends.map(([a, b]) => Math.hypot(b[0] - a[0], b[1] - a[1], b[2] - a[2]));
+  const totalLength = lengths.reduce((x, y) => x + y, 0);
 
   // The page of minutes: rectangles of "text" with rounded ends, drawn as dense point strips.
   const W = 3.0;
@@ -308,6 +363,24 @@ function buildParticles(count) {
     } else {
       p3.set([r() * Math.PI * 2, 0, v < 0.85 ? 1 : 2], i * 3);
     }
+
+    // 5: a node (a quarter of the particles) or a point on a link, links weighted by their length.
+    if (r() < 0.25) {
+      const n = NODES[Math.floor(r() * NODES.length)];
+      const rad = 0.16 * Math.cbrt(r());
+      const th = r() * Math.PI * 2;
+      const ph = Math.acos(2 * r() - 1);
+      p4.set([n[0] + Math.sin(ph) * Math.cos(th) * rad, n[1] + Math.cos(ph) * rad, n[2] + Math.sin(ph) * Math.sin(th) * rad, -1 - n[3]], i * 4);
+    } else {
+      let pick = r() * totalLength;
+      let e = 0;
+      while (e < ends.length - 1 && (pick -= lengths[e]) > 0) e++;
+      const [a, b] = ends[e];
+      const u = r();
+      // Links run from the node to the glass, so the pulse travels inwards.
+      const jitter = () => (r() - 0.5) * 0.025;
+      p4.set([b[0] + (a[0] - b[0]) * u + jitter(), b[1] + (a[1] - b[1]) * u + jitter(), b[2] + (a[2] - b[2]) * u + jitter(), e + Math.min(u, 0.999)], i * 4);
+    }
   }
 
   const geometry = new THREE.BufferGeometry();
@@ -317,6 +390,7 @@ function buildParticles(count) {
   geometry.setAttribute('aP1', new THREE.BufferAttribute(p1, 3));
   geometry.setAttribute('aP2', new THREE.BufferAttribute(p2, 3));
   geometry.setAttribute('aP3', new THREE.BufferAttribute(p3, 3));
+  geometry.setAttribute('aP4', new THREE.BufferAttribute(p4, 4));
   return geometry;
 }
 
@@ -512,6 +586,7 @@ export async function createStage(canvas, { reducedMotion = false } = {}) {
       { x: 0.44, y: 0.0, s: 0.86, gz: -5, gs: 0.25, gry: -0.35 }, // 02 page
       { x: 0.44, y: 0.0, s: 0.82, gz: 0, gs: 0.95, gry: 0 }, // 03 vault
       { x: 0.86, y: 0.42, s: 0.4, gz: -1, gs: 0.9, gry: 0 }, // features
+      { x: 0.42, y: -0.04, s: 0.62, gz: 0, gs: 0.5, gry: 0 }, // connected memory
       { x: 0.0, y: -0.62, s: 1.15, gz: -3, gs: 0.5, gry: 0 }, // screens
       { x: -0.8, y: 0.34, s: 0.48, gz: -1, gs: 0.85, gry: 0 }, // numbers
       { x: 0.45, y: 0.0, s: 0.8, gz: -1, gs: 0.8, gry: 0 }, // privacy
@@ -524,6 +599,7 @@ export async function createStage(canvas, { reducedMotion = false } = {}) {
       { x: 0, y: 0.36, s: 0.6, gz: -5, gs: 0.25, gry: -0.35 },
       { x: 0, y: 0.38, s: 0.56, gz: 0, gs: 0.95, gry: 0 },
       { x: 0, y: 0.62, s: 0.4, gz: -1, gs: 0.9, gry: 0 },
+      { x: 0, y: 0.6, s: 0.42, gz: 0, gs: 0.45, gry: 0 },
       { x: 0, y: -0.7, s: 1.0, gz: -3, gs: 0.5, gry: 0 },
       { x: 0, y: 0.62, s: 0.4, gz: -1, gs: 0.85, gry: 0 },
       { x: 0, y: 0.62, s: 0.45, gz: -1, gs: 0.8, gry: 0 },

@@ -41,6 +41,7 @@
     <nav class="nav-links" data-i18n-aria="aria.sections" aria-label="Sections">
       <a href="#how" data-i18n="nav.how">How it works</a>
       <a href="#features" data-i18n="nav.features">Features</a>
+      <a href="#memory" data-i18n="nav.memory">Memory</a>
       <a href="#numbers" data-i18n="nav.numbers">Numbers</a>
       <a href="#privacy" data-i18n="nav.privacy">Privacy</a>
       <a href="#compare" data-i18n="nav.compare">Compare</a>
@@ -131,7 +132,7 @@
     <section class="section" id="features" data-anchor=".section-head" data-scene="3" data-pose="4" data-dim="0.32" data-dim-tall="0.2">
       <header class="section-head">
         <p class="kicker" data-i18n="f.kicker">Features</p>
-        <h2 class="headline" data-i18n="f.title">Transcripts, minutes, answers and tasks.<br><span class="grad">All on your Mac.</span></h2>
+        <h2 class="headline" data-i18n="f.title">From the call to the minutes.<br><span class="grad">All on your Mac.</span></h2>
       </header>
       <div class="bento">
         <article class="card card-wide card-translate reveal">
@@ -143,15 +144,6 @@
           </div>
           <h3 data-i18n="f.translate.t">Real-time translation</h3>
           <p data-i18n="f.translate.b">Subtitles of what the other participants say, translated into your language as they speak.</p>
-        </article>
-
-        <article class="card reveal">
-          <div class="viz chat live-viz" aria-hidden="true">
-            <p class="bubble q" data-i18n="f.ask.q">What did we decide about the beta?</p>
-            <p class="bubble a"><span data-i18n="f.ask.a">Thursday, small teams first.</span> <span class="cite">▶ 12:04</span></p>
-          </div>
-          <h3 data-i18n="f.ask.t">Questions about your meetings</h3>
-          <p data-i18n="f.ask.b">Ask in your own words, across all your meetings. Each answer links to the moment it comes from.</p>
         </article>
 
         <article class="card reveal">
@@ -174,42 +166,20 @@
         </article>
 
         <article class="card reveal">
-          <div class="viz brief live-viz" aria-hidden="true">
-            <div class="brief-card">
-              <p class="brief-when" data-i18n="f.brief.when">In 10 min · Roadmap sync</p>
-              <p class="brief-line"><i class="d1"></i><span data-i18n="f.brief.l1">Ana, Luis + 2</span></p>
-              <p class="brief-line"><i class="d2"></i><span data-i18n="f.brief.l2">Still open: pricing</span></p>
-              <p class="brief-line"><i class="d3"></i><span>Q3-plan.pdf</span></p>
-            </div>
-          </div>
-          <h3 data-i18n="f.brief.t">Pre-meeting brief</h3>
-          <p data-i18n="f.brief.b">Before each calendar meeting: who is coming and what was left open last time.</p>
-        </article>
-
-        <article class="card reveal">
-          <div class="viz follow live-viz" aria-hidden="true">
-            <div class="task-row"><span class="box"></span><span class="task-text" data-i18n="f.follow.task">Send the deck · Fri</span></div>
-            <div class="follow-act"><span class="add" data-i18n="f.follow.add">Add to Reminders</span><p class="added" data-i18n="f.follow.added">Added to Reminders</p></div>
-          </div>
-          <h3 data-i18n="f.follow.t">Tasks to Reminders and Calendar</h3>
-          <p data-i18n="f.follow.b">Open tasks go to Reminders, follow-up meetings to Calendar. Nothing is added until you confirm.</p>
-        </article>
-
-        <article class="card reveal">
-          <div class="viz docs live-viz" aria-hidden="true">
-            <span class="doc d-pdf">PDF</span><span class="doc d-doc">DOCX</span><span class="doc d-xls">XLSX</span><span class="doc d-ppt">PPTX</span><span class="doc d-md">MD</span>
-            <span class="doc-lock"><svg viewBox="0 0 24 24" width="22" height="22"><rect x="5" y="10.5" width="14" height="10" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M8.5 10.5V8a3.5 3.5 0 0 1 7 0v2.5" fill="none" stroke="currentColor" stroke-width="1.7"/></svg></span>
-          </div>
-          <h3 data-i18n="f.docs.t">Search your documents</h3>
-          <p data-i18n="f.docs.b">Add PDF, Word, Excel or PowerPoint files. Answers can quote them, with the page. The index is encrypted.</p>
-        </article>
-
-        <article class="card reveal">
           <div class="viz langs live-viz" aria-hidden="true">
             <div class="langs-roll"><span>Hola</span><span>Hello</span><span>Bonjour</span><span>Hallo</span><span>Ciao</span><span>Olá</span><span>Hola</span></div>
           </div>
           <h3 data-i18n="f.lang.t">Multilingual transcription</h3>
           <p data-i18n="f.lang.b">Every language Apple’s speech recognition supports. Minutes in the meeting’s language or yours.</p>
+        </article>
+
+        <article class="card reveal">
+          <div class="viz docs live-viz" aria-hidden="true">
+            <span class="doc d-md">MD</span><span class="doc d-pdf">PDF</span><span class="doc d-doc">JSON</span><span class="doc d-xls">SRT</span><span class="doc d-ppt">VTT</span>
+            <span class="doc-lock"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M12 4v11m-4.5-4.5L12 15l4.5-4.5M5 19.5h14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </div>
+          <h3 data-i18n="f.export.t">Export and import</h3>
+          <p data-i18n="f.export.b">Minutes and transcripts as Markdown, PDF, subtitles or JSON. Import audio or video recordings as meetings.</p>
         </article>
 
         <article class="card card-wide card-models reveal">
@@ -228,11 +198,43 @@
       </div>
     </section>
 
+    <!-- Connected memory -->
+    <section class="section memory" id="memory" data-anchor=".mem-row" data-scene="5" data-pose="5" data-dim="0.9" data-dim-tall="0.32">
+      <header class="section-head" data-scene="5" data-pose="5" data-dim="0.2" data-dim-tall="0.5">
+        <p class="kicker" data-i18n="m.kicker">Connected memory</p>
+        <h2 class="headline" data-i18n="m.title">Every meeting and document, connected.<br><span class="grad">Ask once. Vauta searches them all.</span></h2>
+      </header>
+      <div class="mem-row">
+        <figure class="mem-ask live-viz reveal" data-i18n-aria="aria.memask" role="img" aria-label="Example: a question answered from a meeting in another language, a PDF and an earlier meeting, each cited.">
+          <div class="mem-bar" aria-hidden="true"><i></i><i></i><i></i><span data-i18n="m.ask">Ask</span><em data-i18n="m.scope">All meetings and documents</em></div>
+          <div class="mem-body" aria-hidden="true">
+            <p class="mem-q" data-i18n="m.q">What did we agree with Acme on pricing?</p>
+            <p class="mem-status"><i></i><span data-i18n="m.status">3 sources found by meaning</span></p>
+            <ol class="mem-src">
+              <li class="src-meet"><b><span data-i18n="m.s1">Acme weekly · 3 Oct · 12:04</span><em data-i18n="m.s1.lang">said in Spanish</em></b><span data-i18n="m.s1.q">“Cerramos 18 € por usuario a partir de enero.”</span></li>
+              <li class="src-doc"><b data-i18n="m.s2">Acme-proposal-v3.pdf · p. 4</b><span data-i18n="m.s2.q">“15% volume discount above 200 seats.”</span></li>
+              <li class="src-meet"><b data-i18n="m.s3">Pricing review · 12 Sep · 31:40</b><span data-i18n="m.s3.q">“Laura will send the signed order on Friday.”</span></li>
+            </ol>
+            <p class="mem-a" data-i18n="m.a">€18 per user from January<sup>1</sup>, with 15% off above 200 seats<sup>2</sup>. Still open: Laura sends the signed order on Friday<sup>3</sup>.</p>
+          </div>
+        </figure>
+        <div class="mem-space" aria-hidden="true"></div>
+      </div>
+      <ul class="mem-points" data-scene="5" data-pose="5" data-dim="0.28" data-dim-tall="0.2">
+        <li class="reveal"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M4 6.5c0-1.4 3.6-2.5 8-2.5s8 1.1 8 2.5-3.6 2.5-8 2.5-8-1.1-8-2.5z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 6.5v5.5c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5V6.5M4 12v5.5c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><h3 data-i18n="m.p1.t">One index for everything</h3><p data-i18n="m.p1.b">Transcripts, minutes, notes and your PDF, Word, Excel and PowerPoint files, searched together.</p></li>
+        <li class="reveal"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 12h16M12 4c2.2 2.3 3.2 5 3.2 8s-1 5.7-3.2 8c-2.2-2.3-3.2-5-3.2-8s1-5.7 3.2-8z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><h3 data-i18n="m.p2.t">Search by meaning, in any language</h3><p data-i18n="m.p2.b">With EmbeddingGemma 2 on your Mac, a question in English finds what was said in Spanish. Names, figures and codes still match exactly.</p></li>
+        <li class="reveal"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="6" cy="7" r="2.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="18" cy="7" r="2.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="17.5" r="2.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M8.3 8.2l2.4 6.9M15.7 8.2l-2.4 6.9M8.5 7h7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><h3 data-i18n="m.p3.t">People, projects and tasks</h3><p data-i18n="m.p3.b">Vauta links the people, projects, clients and topics across your meetings, with one list of open tasks and their owners.</p></li>
+        <li class="reveal"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 9.5h16M8.5 3v4M15.5 3v4M8 13.5h5M8 16.5h8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><h3 data-i18n="m.p4.t">Context before each meeting</h3><p data-i18n="m.p4.b">Who is coming, what the last meeting with them left open, and related meetings, documents and reminders. Each line opens its source.</p></li>
+        <li class="reveal"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M8.3 12.2l2.5 2.5 4.9-5.2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><h3 data-i18n="m.p5.t">Suggestions you confirm</h3><p data-i18n="m.p5.b">After each meeting, reminders for open tasks and calendar events for agreed follow-ups. Nothing is added until you confirm.</p></li>
+      </ul>
+      <p class="fine center" data-i18n="m.fine">The search model is optional: 574 MB, downloaded only when you choose. Without it, Ask searches by keywords.</p>
+    </section>
+
     <!-- Screens -->
-    <section class="section screens" id="screens" data-scene="4" data-pose="5" data-dim="0.32" data-dim-tall="0.24">
+    <section class="section screens" id="screens" data-scene="4" data-pose="6" data-dim="0.32" data-dim-tall="0.24">
       <header class="section-head">
         <p class="kicker" data-i18n="sc.kicker">The app</p>
-        <h2 class="headline" data-i18n="sc.title">A native menu-bar app.<br><span class="grad">Minutes, questions and tasks in one window.</span></h2>
+        <h2 class="headline" data-i18n="sc.title">A native menu-bar app.<br><span class="grad">Start and stop from the menu bar.</span></h2>
       </header>
       <div class="tabs" role="tablist" data-i18n-aria="aria.screens" aria-label="Screens">
         <button role="tab" type="button" id="tab-meetings-minutes" aria-controls="device" aria-selected="true" data-shot="meetings-minutes" data-i18n="sc.tab.minutes">Minutes</button>
@@ -255,7 +257,7 @@
     </section>
 
     <!-- Numbers -->
-    <section class="section" id="numbers" data-scene="3" data-pose="6" data-dim="0.34" data-dim-tall="0.2">
+    <section class="section" id="numbers" data-scene="3" data-pose="7" data-dim="0.34" data-dim-tall="0.2">
       <header class="section-head">
         <p class="kicker" data-i18n="n.kicker">Benchmarks</p>
         <h2 class="headline" data-i18n="n.title">Measured on an Apple M2.<br><span class="grad">Method and limits published.</span></h2>
@@ -302,7 +304,7 @@
     </section>
 
     <!-- Privacy -->
-    <section class="section privacy" id="privacy" data-scene="3" data-pose="7" data-dim="0.4" data-dim-tall="0.22">
+    <section class="section privacy" id="privacy" data-scene="3" data-pose="8" data-dim="0.4" data-dim-tall="0.22">
       <div class="privacy-grid">
         <div class="privacy-copy">
           <p class="kicker" data-i18n="p.kicker">Privacy</p>
@@ -333,7 +335,7 @@
     </section>
 
     <!-- Compare -->
-    <section class="section" id="compare" data-scene="4" data-pose="8" data-dim="0.24" data-dim-tall="0.18">
+    <section class="section" id="compare" data-scene="4" data-pose="9" data-dim="0.24" data-dim-tall="0.18">
       <header class="section-head">
         <p class="kicker" data-i18n="c.kicker">Comparison</p>
         <h2 class="headline" data-i18n="c.title">Vauta vs. the alternatives.<br><span class="grad">They transcribe in the cloud. Vauta, on your Mac.</span></h2>
@@ -350,7 +352,7 @@
     </section>
 
     <!-- Install -->
-    <section class="section finale" id="install" data-anchor=".finale-title" data-scene="3" data-pose="9" data-dim="0.9">
+    <section class="section finale" id="install" data-anchor=".finale-title" data-scene="3" data-pose="10" data-dim="0.9">
       <div class="finale-inner">
         <div class="finale-orb" aria-hidden="true"></div>
         <h2 class="display finale-title reveal" data-i18n="i.title">Get Vauta.<br><span class="grad">Free and open source.</span></h2>
@@ -375,7 +377,7 @@
     </section>
   </main>
 
-  <footer class="footer" data-scene="3" data-pose="9" data-dim="0.35">
+  <footer class="footer" data-scene="3" data-pose="10" data-dim="0.35">
     <div class="footer-inner">
       <div class="footer-brand">
         <img src="img/icon-256.webp" width="28" height="28" alt="">
