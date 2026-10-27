@@ -26,12 +26,17 @@ const comparison = {
 // What the page is about, for search engines and AI assistants: the app, from the same words the page uses.
 const featureKeys = ['s1.title', 's2.title', 's3.title', 'f.translate.t', 'f.speakers.t', 'f.notepad.t', 'f.lang.t', 'f.export.t', 'f.models.t', 'm.p1.t', 'm.p2.t'];
 
+// The FAQ's question numbers, as the page lists them.
+function faqKeys(html) {
+  return [...html.matchAll(/data-i18n="faq\.q(\d+)"/g)].map((m) => m[1]);
+}
+
 function english(html, key) {
   return html.match(new RegExp(`data-i18n="${key.replaceAll('.', '\\.')}"[^>]*>([^]*?)</`))[1];
 }
 
 function structuredData(html, lang) {
-  const text = (key) => (lang === 'en' ? english(html, key) : strings[lang][key]).replace(/<br>/g, ' ').replace(/<[^>]+>/g, '');
+  const text = (key) => (lang === 'en' ? english(html, key) : strings[lang][key]).replace(/<br>/g, ' ').replace(/<[^>]+>/g, '').replace(/&amp;/g, '&');
   const description = lang === 'en' ? html.match(/<meta name="description" content="([^"]+)"/)[1] : meta[lang].description;
   const url = lang === 'en' ? site : `${site}${lang}/`;
   const data = {
@@ -57,6 +62,16 @@ function structuredData(html, lang) {
         screenshot: `${site}img/meetings-minutes-${lang}-1600.webp`,
         featureList: featureKeys.map(text),
         author: { '@type': 'Person', name: 'Nicolás López de Lerma López', url: 'https://github.com/MaquinaTech' },
+      },
+      {
+        '@type': 'FAQPage',
+        '@id': `${url}#faq`,
+        inLanguage: lang,
+        mainEntity: faqKeys(html).map((n) => ({
+          '@type': 'Question',
+          name: text(`faq.q${n}`),
+          acceptedAnswer: { '@type': 'Answer', text: text(`faq.a${n}`) },
+        })),
       },
     ],
   };

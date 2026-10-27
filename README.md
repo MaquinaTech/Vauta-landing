@@ -18,7 +18,7 @@ npm run preview   # serves dist/ at http://127.0.0.1:5198
 
 The English page switches to Spanish in place when the browser asks for Spanish; append `?lang=es` or `?lang=en` to
 force a language. The build also writes `es/index.html`: the same page with the Spanish text written in, so search
-engines can index it, and with the structured data (schema.org) for each language.
+engines can index it, and with the structured data (schema.org: the app and the FAQ) for each language.
 
 ## Layout
 
