@@ -1474,6 +1474,7 @@ b.others,
   background: rgba(18, 19, 38, 0.85);
   border: 1px solid var(--line);
   overflow-x: auto;
+  overflow-y: hidden;
   scrollbar-width: none;
 }
 
@@ -2738,7 +2739,9 @@ html[lang="es"] .stat-value .pct::before {
     gap: 12px;
     margin: 0 calc(-1 * var(--pad-r)) 0 calc(-1 * var(--pad-l));
     padding: 4px var(--pad-r) 12px var(--pad-l);
+    /* Sideways only: a vertical swipe on a card scrolls the page, never the row. */
     overflow-x: auto;
+    overflow-y: hidden;
     scroll-snap-type: x mandatory;
     scroll-padding-inline: var(--pad-l);
     overscroll-behavior-x: contain;
@@ -2752,6 +2755,12 @@ html[lang="es"] .stat-value .pct::before {
   .bento .card {
     flex: 0 0 84%;
     scroll-snap-align: start;
+  }
+
+  /* Cards off to the side never scroll into view, so they would wait below the row: the row shows them as they are. */
+  .bento .reveal {
+    opacity: 1;
+    transform: none;
   }
 
   .card {
@@ -3069,6 +3078,7 @@ html[lang="es"] .stat-value .pct::before {
     margin: 0 calc(-1 * clamp(18px, 3vw, 36px));
     padding: 0 clamp(18px, 3vw, 36px);
     overflow-x: auto;
+    overflow-y: hidden;
     scrollbar-width: none;
   }
 
