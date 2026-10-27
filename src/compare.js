@@ -4,7 +4,8 @@
 // Vauta side by side with the best-known meeting notetakers. Every claim comes from the vendor's own public
 // documentation, checked on 27 October 2026 and linked under each comparison; anything a vendor's pages left unclear is
 // not claimed. A row is "ahead" when Vauta is better on it, "level" when both do the same and "behind" when the rival
-// is better: Vauta runs only on a Mac, and the board says so.
+// is better: Vauta runs only on a Mac, and the board says so. Each board lists the rows where Vauta is ahead first, then
+// level, then behind; within each group, the rows where Vauta is ahead of the most rivals come first.
 // Used by the page script, and by the build to write the default comparison into the HTML.
 
 export const rows = [
@@ -220,11 +221,16 @@ const words = {
 };
 
 // The comparison with one rival, as HTML. Every string here is written in this file, none comes from a visitor.
+const rank = { ahead: 0, level: 1, behind: 2 };
+const ahead = (r) => rivals.filter((v) => v.cells[r.id][0] === 'ahead').length;
+const sorted = rows.slice().sort((a, b) => ahead(b) - ahead(a));
+
 export function renderBoard(id, lang) {
   const rival = rivals.find((r) => r.id === id) || rivals[0];
   const w = words[lang] || words.en;
   const name = rival.name[lang];
-  const marks = rows.map((r) => rival.cells[r.id][0]);
+  const order = sorted.slice().sort((a, b) => rank[rival.cells[a.id][0]] - rank[rival.cells[b.id][0]]);
+  const marks = order.map((r) => rival.cells[r.id][0]);
   const count = (m) => marks.filter((x) => x === m).length;
   const score = [w.level(count('level')), count('behind') && w.behind(count('behind'))].filter(Boolean).join(' · ');
   const meter = ['ahead', 'level', 'behind'].flatMap((m) => Array(count(m)).fill(`<i class="${m}"></i>`)).join('');
@@ -233,7 +239,7 @@ export function renderBoard(id, lang) {
     <div class="vs-score"><span class="vs-meter" aria-hidden="true">${meter}</span><p><b>${w.ahead(count('ahead'), rows.length)}</b> · ${score}</p></div>
     <div class="vs-grid">
       <div class="vs-head" aria-hidden="true"><span></span><span class="vs-col-vauta"><img src="img/icon-256.webp" width="22" height="22" alt="">Vauta</span><span class="vs-col-rival">${name}</span></div>
-      ${rows.map((r) => {
+      ${order.map((r) => {
         const [mark, text] = rival.cells[r.id];
         return `<div class="vs-row ${mark}">
         <p class="vs-label">${r[lang]}<span class="sr"> (${w.mark[mark]})</span></p>

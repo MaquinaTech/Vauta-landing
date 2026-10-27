@@ -112,6 +112,7 @@ export const strings = {
 
     'sc.kicker': 'La app',
     'sc.title': 'Una app nativa de barra de menús.<br><span class="grad">Empieza y para desde la barra de menús.</span>',
+    'sc.beta': '<b>Beta 0.9</b> La interfaz de esta primera versión es provisional. Ya se está trabajando en una mejorada.',
     'sc.tab.minutes': 'Actas',
     'sc.tab.ask': 'Preguntar',
     'sc.tab.tasks': 'Tareas',
