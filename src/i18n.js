@@ -27,7 +27,7 @@ export const strings = {
     'hero.cta': 'Consigue Vauta gratis',
     'hero.cta2': 'Cómo funciona',
     'hero.chip.silicon': 'Apple silicon',
-    'hero.chip.version': 'v0.9.0 beta pública',
+    'hero.chip.version': 'v0.9.1 beta pública',
 
     'meter.me': 'Yo',
     'meter.others': 'Otros',

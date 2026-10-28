@@ -52,7 +52,7 @@ function structuredData(html, lang) {
         applicationCategory: 'BusinessApplication',
         applicationSubCategory: lang === 'en' ? 'Meeting transcription and minutes' : 'Transcripción de reuniones y actas',
         operatingSystem: 'macOS 26 or later, Apple silicon',
-        softwareVersion: '0.9.0',
+        softwareVersion: '0.9.1',
         isAccessibleForFree: true,
         offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
         license: 'https://www.apache.org/licenses/LICENSE-2.0',

@@ -1,6 +1,6 @@
 # Vauta
 
-> Vauta is a free, open-source (Apache-2.0) macOS app that captures any call on your Mac, transcribes it on the Mac and writes the minutes: decisions, tasks with owner and date, and open questions. No bot joins the call, nothing is sent to a cloud service, and there is no account. Version 0.9.0, public beta. Runs on Macs with Apple silicon and macOS 26 or later; built from source with the Command Line Tools.
+> Vauta is a free, open-source (Apache-2.0) macOS app that captures any call on your Mac, transcribes it on the Mac and writes the minutes: decisions, tasks with owner and date, and open questions. No bot joins the call, nothing is sent to a cloud service, and there is no account. Version 0.9.1, public beta. Runs on Macs with Apple silicon and macOS 26 or later; built from source with the Command Line Tools.
 
 Website: https://maquinatech.github.io/Vauta-landing/ (Spanish: https://maquinatech.github.io/Vauta-landing/es/)
 Source code: https://github.com/MaquinaTech/Vauta
