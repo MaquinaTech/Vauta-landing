@@ -130,7 +130,7 @@ export function renderVsPage({ id, lang }, site, css) {
 <body class="page">
   <header class="nav">
     <a class="brand" href="${home}">
-      <img src="${up}img/icon-256.webp" width="30" height="30" alt="">
+      <img src="${up}img/icon-64.webp" width="30" height="30" alt="">
       <span>Vauta</span>
     </a>
     <div class="nav-end">

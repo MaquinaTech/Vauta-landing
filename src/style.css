@@ -496,6 +496,11 @@ b.others,
     transform: none;
   }
 
+  /* The hero's text is the first thing on screen: it rises into place but is never invisible, so it paints at once. */
+  .hero .reveal {
+    opacity: 1;
+  }
+
   /* If the script never runs, show the hero anyway. */
   .hero .reveal:not(.in) {
     animation: reveal-fallback 0s 3s forwards;

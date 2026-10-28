@@ -423,8 +423,13 @@ document.fonts?.ready.then(relayout);
 
 function webgl2() {
   try {
-    const c = document.createElement('canvas');
-    return !!c.getContext('webgl2');
+    // A GPU that only renders in software (no hardware acceleration) would spend seconds on each frame: the page then
+    // keeps its still backdrop instead.
+    const gl = document.createElement('canvas').getContext('webgl2', { failIfMajorPerformanceCaveat: true });
+    if (!gl) return false;
+    const info = gl.getExtension('WEBGL_debug_renderer_info');
+    const renderer = String(gl.getParameter(info ? info.UNMASKED_RENDERER_WEBGL : gl.RENDERER));
+    return !/swiftshader|llvmpipe|softpipe|software|basic render/i.test(renderer);
   } catch {
     return false;
   }
@@ -467,7 +472,10 @@ async function bootStage() {
 setLanguage(preferredLanguage());
 measure();
 onScroll();
-bootStage();
+// The 3D stage is decoration: start it once the page has loaded and the main thread is idle, so the text paints first.
+const whenIdle = (fn) => (window.requestIdleCallback ? requestIdleCallback(fn, { timeout: 2000 }) : setTimeout(fn, 200));
+if (document.readyState === 'complete') whenIdle(bootStage);
+else window.addEventListener('load', () => whenIdle(bootStage), { once: true });
 
 // A soft light that follows the pointer across the feature cards.
 document.querySelectorAll('.card').forEach((card) => {
