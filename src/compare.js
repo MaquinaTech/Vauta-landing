@@ -2,7 +2,7 @@
 // SPDX-FileCopyrightText: 2026 Nicolás López de Lerma López
 
 // Vauta side by side with the best-known meeting notetakers. Every claim comes from the vendor's own public
-// documentation, checked on 27 October 2026 and linked under each comparison; anything a vendor's pages left unclear is
+// documentation, checked on 27 and 28 October 2026 and linked under each comparison; anything a vendor's pages left unclear is
 // not claimed. A row is "ahead" when Vauta is better on it, "level" when both do the same and "behind" when the rival
 // is better: Vauta runs only on a Mac, and the board says so. Each board lists the rows where Vauta is ahead first, then
 // level, then behind; within each group, the rows where Vauta is ahead of the most rivals come first.
@@ -205,6 +205,29 @@ export const rivals = [
     sources: [
       ['https://www.granola.ai/security', { en: 'Security', es: 'Seguridad' }],
       ['https://www.granola.ai/pricing', { en: 'Pricing', es: 'Precios' }],
+    ],
+  },
+  {
+    id: 'macwhisper',
+    name: { en: 'MacWhisper', es: 'MacWhisper' },
+    why: {
+      en: 'Also transcribes on your Mac, but it is a transcription app: live meeting transcripts, speaker recognition and AI prompts need Pro (€65), and it is not open source.',
+      es: 'También transcribe en tu Mac, pero es una app de transcripción: la transcripción en directo de reuniones, el reconocimiento de hablantes y los prompts con IA necesitan Pro (65 €), y no es de código abierto.',
+    },
+    cells: {
+      where: ['level', { en: 'On your Mac (cloud transcription optional)', es: 'En tu Mac (transcripción en la nube opcional)' }],
+      bot: ['level', { en: 'No bot', es: 'Sin bot' }],
+      apps: ['level', { en: 'Zoom, Teams, Webex, Discord, browsers and more; not FaceTime', es: 'Zoom, Teams, Webex, Discord, navegadores y más; no FaceTime' }],
+      platform: ['behind', { en: 'Mac, iPhone and iPad', es: 'Mac, iPhone e iPad' }],
+      account: ['level', { en: 'None (a license key for Pro)', es: 'Ninguna (una clave de licencia para Pro)' }],
+      cost: ['ahead', { en: 'Free app; speaker recognition and AI prompts need Pro, €65 once', es: 'App gratis; el reconocimiento de hablantes y los prompts con IA necesitan Pro, 65 € una vez' }],
+      model: ['level', { en: 'With Pro: Ollama or a custom OpenAI-compatible endpoint', es: 'Con Pro: Ollama o un servidor compatible con OpenAI' }],
+      open: ['ahead', no],
+      train: ['level', { en: 'Transcription stays on your Mac; cloud AI services you add follow their own terms', es: 'La transcripción se queda en tu Mac; los servicios de IA en la nube que añadas siguen sus propias condiciones' }],
+    },
+    sources: [
+      ['https://goodsnooze.gumroad.com/l/macwhisper', { en: 'Features and pricing', es: 'Funciones y precios' }],
+      ['https://docs.macwhisper.com/article/30-record-meetings', { en: 'Recording meetings', es: 'Grabar reuniones' }],
     ],
   },
 ];

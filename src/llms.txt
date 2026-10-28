@@ -34,7 +34,7 @@ Author: Nicolás López de Lerma López
 
 ## Compared with other meeting notetakers
 
-ChatGPT, Gemini in Google Meet, Microsoft Teams intelligent recap, Zoom AI, Otter.ai, Fireflies.ai and Granola transcribe in their own cloud and need an account; several need a paid plan for meeting notes. Vauta transcribes on the Mac, needs no account and is free. Vauta runs only on a Mac with Apple silicon, while most of them also run on other platforms. Each comparison, with the vendors' sources checked on 27 October 2026, has its own page:
+ChatGPT, Gemini in Google Meet, Microsoft Teams intelligent recap, Zoom AI, Otter.ai, Fireflies.ai and Granola transcribe in their own cloud and need an account; several need a paid plan for meeting notes. MacWhisper transcribes on the Mac too, but live meeting transcripts, speaker recognition and AI prompts need its paid Pro version, and it is not open source. Vauta transcribes on the Mac, needs no account and is free. Vauta runs only on a Mac with Apple silicon, while most of them also run on other platforms. Each comparison, with the vendors' sources checked on 27 and 28 October 2026, has its own page:
 
 - [Vauta vs ChatGPT]({{site}}vs/chatgpt/)
 - [Vauta vs Gemini in Google Meet]({{site}}vs/gemini/)
@@ -43,6 +43,7 @@ ChatGPT, Gemini in Google Meet, Microsoft Teams intelligent recap, Zoom AI, Otte
 - [Vauta vs Otter.ai]({{site}}vs/otter/)
 - [Vauta vs Fireflies.ai]({{site}}vs/fireflies/)
 - [Vauta vs Granola]({{site}}vs/granola/)
+- [Vauta vs MacWhisper]({{site}}vs/macwhisper/)
 
 ## Who it is for
 
