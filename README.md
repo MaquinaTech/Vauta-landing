@@ -22,9 +22,9 @@ engines can index it, and with the structured data (schema.org: the app, its sou
 It also writes one comparison page per rival in `src/compare.js`, at `vs/<rival>/` and `es/vs/<rival>/`, and the
 `sitemap.xml`, `robots.txt` and `llms.txt` that list them.
 
-The site's address is `https://maquinatech.github.io/Vauta-landing/`. To publish it somewhere else, such as its own
-domain, build with `SITE_URL=https://example.org/ npm run build`: the canonical links, the sitemap, robots.txt, llms.txt and
-the structured data all follow. The version shown comes from `src/version.js`.
+The site's address is `https://vauta.vercel.app/`. To publish it somewhere else, such as its own domain, build with
+`SITE_URL=https://example.org/ npm run build`: the canonical links, the sitemap, robots.txt, llms.txt and the structured
+data all follow. The version shown comes from `src/version.js`.
 
 ## Layout
 
@@ -48,7 +48,12 @@ When they change there, change them here too.
 
 ## Deploy
 
-`.github/workflows/pages.yml` builds the site and publishes it to GitHub Pages on every push to `main`.
+Vercel builds and publishes the site on every push to `main` (`npm run build`, output `dist/`). `vercel.json` adds the
+trailing slash to every page address and the security headers.
+
+The GitHub Pages copy, the site's first address, stays up so that links shared before the move keep working:
+`.github/workflows/pages.yml` builds it with `REDIRECT_TO_SITE=1`, and each page sends visitors on to the same page on
+Vercel.
 
 ## License
 

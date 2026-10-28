@@ -11,7 +11,11 @@ import { version } from './src/version.js';
 
 // The address the site is published at, with a trailing slash. SITE_URL moves it (to its own domain, for example):
 // every canonical link, the sitemap, robots.txt, llms.txt and the structured data follow.
-const site = (process.env.SITE_URL || 'https://maquinatech.github.io/Vauta-landing/').replace(/\/?$/, '/');
+const site = (process.env.SITE_URL || 'https://vauta.vercel.app/').replace(/\/?$/, '/');
+
+// The GitHub Pages copy (REDIRECT_TO_SITE=1) is the same site, with every page sending visitors on to the same page at
+// the site's address, so links shared before the move keep working and search engines index one address.
+const redirect = process.env.REDIRECT_TO_SITE === '1';
 
 // Writes the comparison into the page, so it reads the same without scripts; the page script takes over from there.
 const comparison = {
@@ -178,6 +182,14 @@ const spanishPage = {
     write('robots.txt', `User-agent: *\nAllow: /\n\nSitemap: ${site}sitemap.xml\n`);
     write('sitemap.xml', sitemap());
     write('llms.txt', readFileSync('src/llms.txt', 'utf8').replaceAll('{{site}}', site).replaceAll('{{version}}', version));
+    if (redirect) {
+      for (const path of ['', 'es/', ...vsPages.map((p) => p.path)]) {
+        const file = join(options.dir, path, 'index.html');
+        const html = readFileSync(file, 'utf8');
+        const refresh = `<meta charset="utf-8">\n  <meta http-equiv="refresh" content="0; url=${site}${path}">`;
+        writeFileSync(file, html.replace('<meta charset="utf-8">', refresh));
+      }
+    }
   },
 };
 
@@ -200,7 +212,7 @@ ${urls.join('\n')}
 }
 
 export default defineConfig({
-  // Relative paths, so the site works from a project page (user.github.io/Vauta-landing/) or its own domain.
+  // Relative paths, so the site works at its own address and from the GitHub Pages copy (user.github.io/Vauta-landing/).
   base: './',
   plugins: [comparison, spanishPage],
   build: {
