@@ -261,7 +261,7 @@ export function renderBoard(id, lang, img = 'img/') {
     <p class="vs-why">${rival.why[lang]}</p>
     <div class="vs-score"><span class="vs-meter" aria-hidden="true">${meter}</span><p><b>${w.ahead(count('ahead'), rows.length)}</b> · ${score}</p></div>
     <div class="vs-grid">
-      <div class="vs-head" aria-hidden="true"><span></span><span class="vs-col-vauta"><img src="${img}icon-256.webp" width="22" height="22" alt="">Vauta</span><span class="vs-col-rival">${name}</span></div>
+      <div class="vs-head" aria-hidden="true"><span></span><span class="vs-col-vauta"><img src="${img}icon-64.webp" width="22" height="22" alt="">Vauta</span><span class="vs-col-rival">${name}</span></div>
       ${order.map((r) => {
         const [mark, text] = rival.cells[r.id];
         return `<div class="vs-row ${mark}">
