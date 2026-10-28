@@ -160,7 +160,7 @@ export const strings = {
     'c.kicker': 'Comparativa',
     'c.title': 'Vauta frente a la competencia<br><span class="grad">Ellas transcriben en la nube, Vauta en tu Mac</span>',
     'c.more': 'Comparativas completas',
-    'c.fine': 'Documentación pública de cada empresa a 27 de octubre de 2026, para la función indicada y su configuración por defecto. Los planes cambian: consulta sus webs. Los nombres son marcas de sus propietarios; Vauta no está afiliada. <a href="https://github.com/MaquinaTech/Vauta-landing/issues">¿Ves un error?</a>',
+    'c.fine': 'Documentación pública de cada empresa a 27 y 28 de octubre de 2026, para la función indicada y su configuración por defecto. Los planes cambian: consulta sus webs. Los nombres son marcas de sus propietarios; Vauta no está afiliada. <a href="https://github.com/MaquinaTech/Vauta-landing/issues">¿Ves un error?</a>',
 
     'i.title': 'Consigue Vauta<br><span class="grad">Gratis y de código abierto</span>',
     'i.lede': 'Compílala en tu Mac con estos comandos. Todo el código que ejecuta es público.',
