@@ -4,10 +4,12 @@
 // The page is written in English in index.html; this holds the other languages, keyed by data-i18n.
 // The app's own Spanish terms are used: Yo, Otros, actas, Preguntar, Actividad de red.
 
+import { version } from './version.js';
+
 export const meta = {
   es: {
-    title: 'Vauta — Transcripción de reuniones y actas en tu Mac',
-    description: 'App gratuita y de código abierto para Mac: transcribe cualquier llamada (Zoom, Teams, Meet, Slack) en tu Mac y redacta el acta con decisiones, tareas y preguntas abiertas. Sin bots, sin nube, sin cuenta.',
+    title: 'Vauta — Notas y actas de reuniones con IA que no salen de tu Mac',
+    description: 'Toma de notas con IA para Mac, gratis y de código abierto: transcribe cualquier llamada (Zoom, Teams, Meet, Slack) en tu Mac y redacta el acta con decisiones, tareas y preguntas abiertas. Sin bots, sin nube, sin cuenta.',
     share: 'Actas, decisiones y tareas de cualquier llamada, redactadas en tu Mac. Sin bots, sin nube, sin cuenta. Gratis y de código abierto.',
   },
 };
@@ -27,7 +29,7 @@ export const strings = {
     'hero.cta': 'Consigue Vauta gratis',
     'hero.cta2': 'Cómo funciona',
     'hero.chip.silicon': 'Apple silicon',
-    'hero.chip.version': 'v0.9.1 beta pública',
+    'hero.chip.version': `v${version} beta pública`,
 
     'meter.me': 'Yo',
     'meter.others': 'Otros',
@@ -124,6 +126,10 @@ export const strings = {
     'faq.a5': 'Todos los que admite el reconocimiento de voz de Apple en tu macOS. El acta se redacta en el idioma de la reunión o en el tuyo, y los subtítulos en directo pueden traducir a los demás participantes a tu idioma.',
     'faq.q6': '¿Es gratis? ¿Necesito una cuenta?',
     'faq.a6': 'Gratis y de código abierto (Apache-2.0), sin cuenta ni telemetría. Se compila en tu Mac desde el código fuente con las Command Line Tools de Apple; no hacen falta Xcode ni una cuenta de Apple. La versión 0.9 es una beta pública.',
+    'faq.q7': '¿Vauta es una alternativa a Otter, Granola o Fireflies?',
+    'faq.a7': 'Sí, en un Mac con Apple silicon. Como ellas, convierte tus llamadas en notas y actas. A diferencia de ellas, transcribe en tu Mac, no necesita cuenta y es gratis; ellas funcionan también en Windows o en la web, y Vauta solo en Mac. Las comparativas de arriba enlazan a la documentación de cada empresa.',
+    'faq.q8': '¿Funciona sin conexión?',
+    'faq.a8': 'Sí, cuando los modelos ya están en tu Mac. La transcripción usa el modelo de voz de Apple, que se descarga una vez por idioma, y el acta la redacta Apple Intelligence en tu Mac o tu propio servidor de modelos en tu red. Internet solo hace falta para esas descargas.',
     'sc.kicker': 'La app',
     'sc.title': 'Una app nativa de barra de menús<br><span class="grad">Empieza y para desde la barra de menús</span>',
     'sc.tab.minutes': 'Actas',
@@ -153,6 +159,7 @@ export const strings = {
 
     'c.kicker': 'Comparativa',
     'c.title': 'Vauta frente a la competencia<br><span class="grad">Ellas transcriben en la nube, Vauta en tu Mac</span>',
+    'c.more': 'Comparativas completas',
     'c.fine': 'Documentación pública de cada empresa a 27 de octubre de 2026, para la función indicada y su configuración por defecto. Los planes cambian: consulta sus webs. Los nombres son marcas de sus propietarios; Vauta no está afiliada. <a href="https://github.com/MaquinaTech/Vauta-landing/issues">¿Ves un error?</a>',
 
     'i.title': 'Consigue Vauta<br><span class="grad">Gratis y de código abierto</span>',

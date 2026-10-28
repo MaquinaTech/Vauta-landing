@@ -1766,6 +1766,17 @@ html[lang="es"] .stat-value .pct::before {
   color: #05060d;
 }
 
+.vs-more {
+  margin: 26px 0 0;
+  font-size: 15px;
+  color: var(--ink-2);
+}
+
+.vs-more a {
+  color: var(--ink);
+  text-underline-offset: 3px;
+}
+
 .vs-why {
   max-width: 720px;
   margin: 30px auto 0;

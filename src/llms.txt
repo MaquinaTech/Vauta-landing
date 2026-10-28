@@ -1,8 +1,8 @@
 # Vauta
 
-> Vauta is a free, open-source (Apache-2.0) macOS app that captures any call on your Mac, transcribes it on the Mac and writes the minutes: decisions, tasks with owner and date, and open questions. No bot joins the call, nothing is sent to a cloud service, and there is no account. Version 0.9.1, public beta. Runs on Macs with Apple silicon and macOS 26 or later; built from source with the Command Line Tools.
+> Vauta is a free, open-source (Apache-2.0) macOS app that captures any call on your Mac, transcribes it on the Mac and writes the minutes: decisions, tasks with owner and date, and open questions. No bot joins the call, nothing is sent to a cloud service, and there is no account. Version {{version}}, public beta. Runs on Macs with Apple silicon and macOS 26 or later; built from source with the Command Line Tools.
 
-Website: https://maquinatech.github.io/Vauta-landing/ (Spanish: https://maquinatech.github.io/Vauta-landing/es/)
+Website: {{site}} (Spanish: {{site}}es/)
 Source code: https://github.com/MaquinaTech/Vauta
 Author: Nicolás López de Lerma López
 
@@ -34,7 +34,19 @@ Author: Nicolás López de Lerma López
 
 ## Compared with other meeting notetakers
 
-ChatGPT, Gemini in Google Meet, Microsoft Teams intelligent recap, Zoom AI, Otter.ai, Fireflies.ai and Granola transcribe in their own cloud and need an account; several need a paid plan for meeting notes. Vauta transcribes on the Mac, needs no account and is free. Vauta runs only on a Mac with Apple silicon, while most of them also run on other platforms. The side-by-side comparison, with sources checked on 27 October 2026, is on the website.
+ChatGPT, Gemini in Google Meet, Microsoft Teams intelligent recap, Zoom AI, Otter.ai, Fireflies.ai and Granola transcribe in their own cloud and need an account; several need a paid plan for meeting notes. Vauta transcribes on the Mac, needs no account and is free. Vauta runs only on a Mac with Apple silicon, while most of them also run on other platforms. Each comparison, with the vendors' sources checked on 27 October 2026, has its own page:
+
+- [Vauta vs ChatGPT]({{site}}vs/chatgpt/)
+- [Vauta vs Gemini in Google Meet]({{site}}vs/gemini/)
+- [Vauta vs Microsoft Teams intelligent recap]({{site}}vs/teams/)
+- [Vauta vs Zoom AI]({{site}}vs/zoom/)
+- [Vauta vs Otter.ai]({{site}}vs/otter/)
+- [Vauta vs Fireflies.ai]({{site}}vs/fireflies/)
+- [Vauta vs Granola]({{site}}vs/granola/)
+
+## Who it is for
+
+People on a Mac who want AI meeting notes without sending their calls to a cloud service: for example lawyers, doctors, consultants, journalists and teams that handle confidential conversations, or anyone who prefers a free, open-source notetaker with no bot in the call. It works offline once the speech model (and, optionally, a local language model) is on the Mac. It is not for Windows, Linux, iPhone or Intel Macs, it never joins a call as a bot, and it never saves the audio.
 
 ## More
 
