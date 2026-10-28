@@ -172,7 +172,7 @@ export const strings = {
     'i.req': 'Sin Xcode, sin cuenta de Apple y nada precompilado de lo que fiarte.',
     'i.req.clt': 'Command Line Tools · SDK de macOS 27',
 
-    'foot.page': 'Esta página no usa cookies, no tiene analíticas y no carga nada de terceros. GitHub Pages, que la aloja, guarda los registros de acceso habituales; tu idioma se recuerda en este navegador solo si eliges uno.',
+    'foot.page': 'Esta página no usa cookies, no tiene analíticas y no carga nada de terceros. Vercel, que la aloja, guarda los registros de acceso habituales; tu idioma se recuerda en este navegador solo si eliges uno.',
     'foot.privacy': 'Privacidad',
     'foot.security': 'Seguridad',
     'foot.bench': 'Benchmarks',
