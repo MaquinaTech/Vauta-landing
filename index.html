@@ -5,8 +5,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Vauta — Meeting transcription and minutes on your Mac</title>
-  <meta name="description" content="Free, open-source Mac app that transcribes any call (Zoom, Teams, Meet, Slack) on your Mac and writes the minutes: decisions, tasks and open questions. No bot, no cloud, no account.">
+  <title>Vauta — Free AI meeting notes and minutes that stay on your Mac</title>
+  <meta name="description" content="Free, open-source AI meeting notetaker for Mac. It transcribes any call (Zoom, Teams, Meet, Slack) on your Mac and writes the minutes: decisions, tasks and open questions. No bot, no cloud, no account.">
   <meta name="author" content="Nicolás López de Lerma López">
   <meta name="theme-color" content="#04050b">
   <meta name="color-scheme" content="dark">
@@ -16,21 +16,22 @@
   <meta property="og:site_name" content="Vauta">
   <meta property="og:locale" content="en_US">
   <meta property="og:locale:alternate" content="es_ES">
-  <meta property="og:title" content="Vauta — Meeting transcription and minutes on your Mac">
+  <meta property="og:title" content="Vauta — Free AI meeting notes and minutes that stay on your Mac">
   <meta property="og:description" content="Minutes, decisions and tasks from any call, written on your Mac. No bot, no cloud, no account. Free and open source.">
-  <meta property="og:url" content="https://maquinatech.github.io/Vauta-landing/">
-  <meta property="og:image" content="https://maquinatech.github.io/Vauta-landing/og.png">
+  <meta property="og:url" content="__SITE__">
+  <meta property="og:image" content="__SITE__og.jpg">
+  <meta property="og:image:type" content="image/jpeg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Vauta: meeting minutes written on your Mac">
-  <link rel="canonical" href="https://maquinatech.github.io/Vauta-landing/">
-  <link rel="alternate" hreflang="en" href="https://maquinatech.github.io/Vauta-landing/">
-  <link rel="alternate" hreflang="es" href="https://maquinatech.github.io/Vauta-landing/es/">
-  <link rel="alternate" hreflang="x-default" href="https://maquinatech.github.io/Vauta-landing/">
+  <link rel="canonical" href="__SITE__">
+  <link rel="alternate" hreflang="en" href="__SITE__">
+  <link rel="alternate" hreflang="es" href="__SITE__es/">
+  <link rel="alternate" hreflang="x-default" href="__SITE__">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Vauta — Meeting transcription and minutes on your Mac">
+  <meta name="twitter:title" content="Vauta — Free AI meeting notes and minutes that stay on your Mac">
   <meta name="twitter:description" content="Minutes, decisions and tasks from any call, written on your Mac. No bot, no cloud, no account. Free and open source.">
-  <meta name="twitter:image" content="https://maquinatech.github.io/Vauta-landing/og.png">
+  <meta name="twitter:image" content="__SITE__og.jpg">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
   <link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -82,7 +83,7 @@
           <li>macOS 26+</li>
           <li data-i18n="hero.chip.silicon">Apple silicon</li>
           <li>Apache-2.0</li>
-          <li data-i18n="hero.chip.version">v0.9.1 public beta</li>
+          <li data-i18n="hero.chip.version">v__VERSION__ public beta</li>
         </ul>
       </div>
       <a class="scroll-cue" href="#how" data-i18n-aria="aria.scroll" aria-label="Scroll"><span></span></a>
@@ -326,6 +327,7 @@
 <!-- vs-board -->
         </div>
       </div>
+      <p class="vs-more center"><span data-i18n="c.more">Full comparisons</span>: <!-- vs-links --></p>
       <p class="fine center" data-i18n="c.fine">Vendors’ public docs on 27 October 2026, for the feature named and its default settings. Plans change — check their sites. Names are trademarks of their owners; Vauta is not affiliated. <a href="https://github.com/MaquinaTech/Vauta-landing/issues">Spotted an error?</a></p>
     </section>
 
@@ -359,6 +361,14 @@
         <details class="faq-item">
           <summary><h3 data-i18n="faq.q6">Is it free? Do I need an account?</h3></summary>
           <p data-i18n="faq.a6">Free and open source (Apache-2.0), with no account and no telemetry. You build it on your Mac from the source code with Apple’s Command Line Tools; Xcode and an Apple account are not needed. Version 0.9 is a public beta.</p>
+        </details>
+        <details class="faq-item">
+          <summary><h3 data-i18n="faq.q7">Is Vauta an alternative to Otter, Granola or Fireflies?</h3></summary>
+          <p data-i18n="faq.a7">Yes, on a Mac with Apple silicon. Like them, it turns your calls into notes and minutes. Unlike them, it transcribes on your Mac, needs no account and is free; they also run on Windows or the web, and Vauta only on a Mac. The comparisons above link to each vendor’s own documentation.</p>
+        </details>
+        <details class="faq-item">
+          <summary><h3 data-i18n="faq.q8">Does it work offline?</h3></summary>
+          <p data-i18n="faq.a8">Yes, once the models are on your Mac. Transcription uses Apple’s speech model, downloaded once per language, and the minutes are written by Apple Intelligence on your Mac or by your own model server on your network. The internet is needed only for those downloads.</p>
         </details>
       </div>
     </section>

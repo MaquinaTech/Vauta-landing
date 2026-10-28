@@ -1,13 +1,17 @@
 // SPDX-License-Identifier: Apache-2.0
 // SPDX-FileCopyrightText: 2026 Nicolás López de Lerma López
 
-import { mkdirSync, writeFileSync } from 'node:fs';
-import { join } from 'node:path';
+import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { dirname, join } from 'node:path';
 import { defineConfig } from 'vite';
 import { rivals, renderBoard } from './src/compare.js';
 import { strings, meta, extra } from './src/i18n.js';
+import { vsPages, vsPath, renderVsPage } from './src/pages.js';
+import { version } from './src/version.js';
 
-const site = 'https://maquinatech.github.io/Vauta-landing/';
+// The address the site is published at, with a trailing slash. SITE_URL moves it (to its own domain, for example):
+// every canonical link, the sitemap, robots.txt, llms.txt and the structured data follow.
+const site = (process.env.SITE_URL || 'https://maquinatech.github.io/Vauta-landing/').replace(/\/?$/, '/');
 
 // Writes the comparison into the page, so it reads the same without scripts; the page script takes over from there.
 const comparison = {
@@ -16,7 +20,11 @@ const comparison = {
     const picker = rivals
       .map((r, i) => `          <button role="tab" type="button" id="vs-${r.id}" aria-controls="vs-board" aria-selected="${i === 0}" data-rival="${r.id}">${r.short || r.name.en}</button>`)
       .join('\n');
+    const links = rivals.map((r) => `<a href="${vsPath(r.id, 'en')}">${r.short || r.name.en}</a>`).join(' · ');
     return html
+      .replaceAll('__SITE__', site)
+      .replaceAll('__VERSION__', version)
+      .replace('<!-- vs-links -->', links)
       .replace('<!-- vs-picker -->', picker)
       .replace('<!-- vs-board -->', renderBoard(rivals[0].id, 'en'))
       .replace('<!-- structured-data -->', structuredData(html, 'en'));
@@ -25,6 +33,12 @@ const comparison = {
 
 // What the page is about, for search engines and AI assistants: the app, from the same words the page uses.
 const featureKeys = ['s1.title', 's2.title', 's3.title', 'f.translate.t', 'f.speakers.t', 'f.notepad.t', 'f.lang.t', 'f.export.t', 'f.models.t', 'm.p1.t', 'm.p2.t'];
+
+// What people search for when they look for an app like Vauta.
+const keywords = {
+  en: 'AI meeting notes, meeting transcription, meeting minutes, AI notetaker, Mac, macOS, on-device, private, offline, open source, no bot, Otter alternative, Granola alternative, Fireflies alternative',
+  es: 'notas de reuniones con IA, transcripción de reuniones, actas de reuniones, Mac, macOS, en el dispositivo, privado, sin conexión, código abierto, sin bot, alternativa a Otter, alternativa a Granola, alternativa a Fireflies',
+};
 
 // The FAQ's question numbers, as the page lists them.
 function faqKeys(html) {
@@ -52,17 +66,33 @@ function structuredData(html, lang) {
         applicationCategory: 'BusinessApplication',
         applicationSubCategory: lang === 'en' ? 'Meeting transcription and minutes' : 'Transcripción de reuniones y actas',
         operatingSystem: 'macOS 26 or later, Apple silicon',
-        softwareVersion: '0.9.1',
+        softwareRequirements: 'A Mac with Apple silicon, macOS 26 or later, and the Command Line Tools to build it',
+        softwareVersion: version,
         isAccessibleForFree: true,
         offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
         license: 'https://www.apache.org/licenses/LICENSE-2.0',
         installUrl: 'https://github.com/MaquinaTech/Vauta#install-from-source',
+        downloadUrl: 'https://github.com/MaquinaTech/Vauta/releases',
+        releaseNotes: 'https://github.com/MaquinaTech/Vauta/blob/main/CHANGELOG.md',
+        keywords: keywords[lang],
         sameAs: ['https://github.com/MaquinaTech/Vauta'],
-        image: `${site}og.png`,
+        image: `${site}og.jpg`,
         screenshot: `${site}img/meetings-minutes-${lang}-1600.webp`,
         featureList: featureKeys.map(text),
-        author: { '@type': 'Person', name: 'Nicolás López de Lerma López', url: 'https://github.com/MaquinaTech' },
+        author: { '@id': `${site}#author` },
       },
+      {
+        '@type': 'SoftwareSourceCode',
+        '@id': `${site}#source`,
+        name: 'Vauta',
+        codeRepository: 'https://github.com/MaquinaTech/Vauta',
+        programmingLanguage: 'Swift',
+        runtimePlatform: 'macOS',
+        license: 'https://www.apache.org/licenses/LICENSE-2.0',
+        targetProduct: { '@id': `${site}#app` },
+        author: { '@id': `${site}#author` },
+      },
+      { '@type': 'Person', '@id': `${site}#author`, name: 'Nicolás López de Lerma López', url: 'https://github.com/MaquinaTech' },
       {
         '@type': 'FAQPage',
         '@id': `${url}#faq`,
@@ -137,11 +167,37 @@ const spanishPage = {
       return html;
     },
   },
-  writeBundle(options) {
-    mkdirSync(join(options.dir, 'es'), { recursive: true });
-    writeFileSync(join(options.dir, 'es', 'index.html'), spanish);
+  writeBundle(options, bundle) {
+    const write = (path, content) => {
+      mkdirSync(dirname(join(options.dir, path)), { recursive: true });
+      writeFileSync(join(options.dir, path), content);
+    };
+    write('es/index.html', spanish);
+    const css = Object.keys(bundle).find((name) => name.endsWith('.css'));
+    for (const page of vsPages) write(`${page.path}index.html`, renderVsPage(page, site, css));
+    write('robots.txt', `User-agent: *\nAllow: /\n\nSitemap: ${site}sitemap.xml\n`);
+    write('sitemap.xml', sitemap());
+    write('llms.txt', readFileSync('src/llms.txt', 'utf8').replaceAll('{{site}}', site).replaceAll('{{version}}', version));
   },
 };
+
+// Every page, with its other language, for search engines.
+function sitemap() {
+  const day = new Date().toISOString().slice(0, 10);
+  const pairs = [['', 'es/'], ...rivals.map((r) => [vsPath(r.id, 'en'), vsPath(r.id, 'es')])];
+  const urls = pairs.flatMap(([en, es]) => [en, es].map((path) => `  <url>
+    <loc>${site}${path}</loc>
+    <lastmod>${day}</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="${site}${en}"/>
+    <xhtml:link rel="alternate" hreflang="es" href="${site}${es}"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="${site}${en}"/>
+  </url>`));
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+${urls.join('\n')}
+</urlset>
+`;
+}
 
 export default defineConfig({
   // Relative paths, so the site works from a project page (user.github.io/Vauta-landing/) or its own domain.

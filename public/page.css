@@ -1,0 +1,96 @@
+/* SPDX-License-Identifier: Apache-2.0 */
+/* SPDX-FileCopyrightText: 2026 Nicolás López de Lerma López */
+
+/* The comparison pages (vs/): the site's styles, plus the layout of a plain article. */
+
+.page .nav {
+  background: rgba(4, 5, 11, 0.78);
+  border-bottom-color: var(--line);
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+}
+
+.page .lang a {
+  min-width: 36px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  color: var(--ink-3);
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+}
+
+.page .lang a[aria-current="page"] {
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--ink);
+}
+
+.page-main {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: calc(112px + env(safe-area-inset-top)) var(--pad-r) 72px var(--pad-l);
+}
+
+.crumbs {
+  font-size: 14px;
+  color: var(--ink-3);
+}
+
+.crumbs a {
+  color: var(--ink-2);
+  text-underline-offset: 3px;
+}
+
+.page-title {
+  margin: 18px 0 0;
+  font-size: clamp(36px, 7vw, 64px);
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+  font-weight: 700;
+}
+
+.page-title .grad {
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.page-lede {
+  margin: 22px 0 0;
+  max-width: 62ch;
+  font-size: 19px;
+  color: var(--ink-2);
+  text-wrap: pretty;
+}
+
+.page-main h2 {
+  margin: 56px 0 18px;
+  font-size: 26px;
+  letter-spacing: -0.02em;
+}
+
+.page-list,
+.page-links {
+  margin: 0;
+  padding-left: 1.2em;
+  color: var(--ink-2);
+}
+
+.page-list li,
+.page-links li {
+  margin: 8px 0;
+}
+
+.page-links a {
+  color: var(--ink);
+  text-underline-offset: 3px;
+}
+
+.page-foot {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 0 var(--pad-r) 48px var(--pad-l);
+  border-top: 1px solid var(--line);
+}
