@@ -1,8 +1,12 @@
 // SPDX-License-Identifier: Apache-2.0
 // SPDX-FileCopyrightText: 2026 Nicolás López de Lerma López
 
+import { inject } from '@vercel/analytics';
 import { strings, meta, extra } from './i18n.js';
 import { renderBoard } from './compare.js';
+
+// Vercel Web Analytics: cookieless page views, served from this origin (/_vercel/insights), so the CSP is unchanged.
+inject();
 
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const root = document.documentElement;
